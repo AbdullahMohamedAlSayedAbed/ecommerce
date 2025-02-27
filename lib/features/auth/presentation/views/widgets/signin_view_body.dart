@@ -7,9 +7,11 @@ import 'package:ecommerce/core/utils/app_text_styles.dart';
 import 'package:ecommerce/core/widgets/custom_button.dart';
 import 'package:ecommerce/core/widgets/custom_text_form_field.dart';
 import 'package:ecommerce/core/widgets/password_field.dart';
+import 'package:ecommerce/features/auth/presentation/views/cubit/signin_cubit/signin_cubit.dart';
 import 'package:ecommerce/features/auth/presentation/views/widgets/or_divider.dart';
 import 'package:ecommerce/features/auth/presentation/views/widgets/social_login_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'dont_have_account_widget.dart';
 
@@ -67,7 +69,10 @@ class _SigninViewBodyState extends State<SigninViewBody> {
                   if (formKey.currentState!.validate()) {
                     formKey.currentState!.save();
 
-                    // context.read<SigninCubit>().signin(email, password);
+                    context.read<SigninCubit>().signInWithEmailAndPassword(
+                      email: email,
+                      password: password,
+                    );
                   } else {
                     autovalidateMode = AutovalidateMode.always;
                     setState(() {});
@@ -82,7 +87,7 @@ class _SigninViewBodyState extends State<SigninViewBody> {
               const SizedBox(height: 16),
               SocialLoginButton(
                 onPressed: () {
-                  // context.read<SigninCubit>().signinWithGoogle();
+                  //  context.read<SigninCubit>().signinWithGoogle();
                 },
                 image: Assets.imagesGoogleIcon,
                 title: 'تسجيل بواسطة جوجل',

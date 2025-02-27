@@ -11,4 +11,5 @@ void setupServiceLocator() {
   getIt.registerSingleton<AuthRepo>(AuthRepoImpl(
     authServices: getIt<AuthServices>(),
   ));
+ 
 }

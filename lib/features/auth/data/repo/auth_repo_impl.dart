@@ -28,8 +28,19 @@ class AuthRepoImpl extends AuthRepo {
   Future<Either<Failure, UserEntity>> signInWithCredentials(
     String email,
     String password,
-  ) {
-    throw UnimplementedError();
+  )async {
+    try {
+      var user =await authServices.signInWithCredentials(
+        emailAddress: email,
+        password: password,
+      );
+      return right(UserModel.fromFirebaseUser(user!));
+    } on CustomException catch (e) {
+      return left(ServerFailure(e.message));
+    } catch (e) {
+      log("signInWithCredentials = ${e.toString()}", name: "AuthRepoImpl.signInWithCredentials");
+      return left(ServerFailure("حدث خطأ ما"));
+    }
   }
 
   @override
