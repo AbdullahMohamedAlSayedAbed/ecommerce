@@ -2,10 +2,12 @@ import 'package:ecommerce/core/helper/on_generate_router.dart';
 import 'package:ecommerce/core/services/get_it_services.dart';
 import 'package:ecommerce/core/services/shared_preferences_singleton.dart';
 import 'package:ecommerce/core/utils/app_colors.dart';
+import 'package:ecommerce/core/widgets/custom_bloc_opserver.dart';
 import 'package:ecommerce/firebase_options.dart';
 import 'package:ecommerce/generated/l10n.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() async {
@@ -15,6 +17,7 @@ void main() async {
     Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform),
   ]);
   setupServiceLocator();
+  Bloc.observer = CustomBlocObserver();
   runApp(const FruitHub());
 }
 
