@@ -1,5 +1,7 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:ecommerce/core/constants/constants.dart';
+import 'package:ecommerce/core/helper/on_generate_router.dart';
+import 'package:ecommerce/core/services/shared_preferences_singleton.dart';
 import 'package:ecommerce/core/utils/app_colors.dart';
 import 'package:ecommerce/core/widgets/custom_button.dart';
 import 'package:ecommerce/features/on_boarding/presentation/views/widgets/on_boarding_page_view.dart';
@@ -58,7 +60,10 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
           maintainState: true,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: kHorizintalPadding),
-            child: CustomButton(onPressed: () {}, text: 'ابدأ الان'),
+            child: CustomButton(onPressed: () {
+              Prefs.setBool(kIsOnBoardingViewSeen, true);
+              Navigator.pushNamedAndRemoveUntil(context, AppRouter.login, (route) => false);
+            }, text: 'ابدأ الان'),
           ),
         ),
         const SizedBox(height: 43),

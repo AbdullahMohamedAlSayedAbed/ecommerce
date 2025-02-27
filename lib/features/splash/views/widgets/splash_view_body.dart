@@ -1,7 +1,8 @@
+import 'package:ecommerce/core/constants/constants.dart';
 import 'package:ecommerce/core/helper/on_generate_router.dart';
+import 'package:ecommerce/core/services/shared_preferences_singleton.dart';
 import 'package:ecommerce/core/utils/app_images.dart';
 import 'package:flutter/material.dart';
-
 import 'package:svg_flutter/svg.dart';
 
 class SplashViewBody extends StatefulWidget {
@@ -35,8 +36,13 @@ class _SplashViewBodyState extends State<SplashViewBody> {
   }
 
   void executeNavigation() {
+    bool isOnBoarding = Prefs.getBool(kIsOnBoardingViewSeen);
     Future.delayed(const Duration(seconds: 3), () {
-      Navigator.pushReplacementNamed(context, AppRouter.onBoarding);
+      if (!isOnBoarding) {
+        Navigator.pushReplacementNamed(context, AppRouter.onBoarding);
+      } else {
+        Navigator.pushReplacementNamed(context, AppRouter.login);
+      }
     });
   }
 }

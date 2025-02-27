@@ -38,13 +38,14 @@ dependencies:
   flutter_bloc: ^9.0.0
   flutter_localizations:
     sdk: flutter
-  fluttertoast: ^8.2.12
+  fluttertoast: ^8.2.10
   get_it: ^8.0.3
   icons_launcher: ^3.0.0
   intl: any
   intl_utils: ^2.8.10
   modal_progress_hud_nsn: ^0.5.1
   rename: ^3.0.2
+  shared_preferences: ^2.5.2
   skeletonizer: ^1.4.3
   svg_flutter: ^0.0.1
 dev_dependencies:
