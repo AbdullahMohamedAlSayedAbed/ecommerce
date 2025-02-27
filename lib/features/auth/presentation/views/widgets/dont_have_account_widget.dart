@@ -33,6 +33,7 @@ class DontHaveAnAccountWidget extends StatelessWidget {
                 Navigator.pushNamed(context, AppRouter.signUp);
               },
             text: 'قم بإنشاء حساب',
+            mouseCursor: MouseCursor.uncontrolled,
             style:
                 TextStyles.semiBold16.copyWith(color: AppColors.primaryColor),
           ),

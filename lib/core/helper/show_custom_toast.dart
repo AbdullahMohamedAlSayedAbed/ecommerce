@@ -3,7 +3,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 enum ToastType { success, error, warning }
 
-void showCustomToast(String message, ToastType type) {
+void showCustomToast({required String message,required ToastType type}) {
   Color bgColor;
 
   switch (type) {

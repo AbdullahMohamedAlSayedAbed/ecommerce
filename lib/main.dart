@@ -1,4 +1,5 @@
 import 'package:ecommerce/core/helper/on_generate_router.dart';
+import 'package:ecommerce/core/services/get_it_services.dart';
 import 'package:ecommerce/core/services/shared_preferences_singleton.dart';
 import 'package:ecommerce/core/utils/app_colors.dart';
 import 'package:ecommerce/firebase_options.dart';
@@ -13,6 +14,7 @@ void main() async {
     Prefs.init(),
     Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform),
   ]);
+  setupServiceLocator();
   runApp(const FruitHub());
 }
 

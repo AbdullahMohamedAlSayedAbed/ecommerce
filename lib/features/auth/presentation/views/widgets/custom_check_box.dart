@@ -4,16 +4,27 @@ import 'package:svg_flutter/svg.dart';
 
 import '../../../../../core/utils/app_colors.dart';
 
-class CustomCheckBox extends StatelessWidget {
+class CustomCheckBox extends StatefulWidget {
   const CustomCheckBox(
-      {super.key, required this.isChecked, required this.onChecked});
-  final bool isChecked;
+      {super.key, required this.onChecked});
+  
   final ValueChanged<bool> onChecked;
+
+  @override
+  State<CustomCheckBox> createState() => _CustomCheckBoxState();
+}
+
+class _CustomCheckBoxState extends State<CustomCheckBox> {
+   bool isChecked = false;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        onChecked(!isChecked);
+        setState(() {
+        isChecked = !isChecked;
+          
+        });
+        widget.onChecked(isChecked);
       },
       child: AnimatedContainer(
         width: 24,
@@ -24,12 +35,12 @@ class CustomCheckBox extends StatelessWidget {
           shape: RoundedRectangleBorder(
             side: BorderSide(
               width: 1.50,
-              color: isChecked ? Colors.transparent : const Color(0xFFDCDEDE),
+              color:isChecked ? Colors.transparent : const Color(0xFFDCDEDE),
             ),
             borderRadius: BorderRadius.circular(8),
           ),
         ),
-        child: isChecked
+        child:isChecked
             ? Padding(
                 padding: const EdgeInsets.all(2),
                 child: SvgPicture.asset(

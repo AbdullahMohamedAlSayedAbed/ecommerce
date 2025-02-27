@@ -28,18 +28,14 @@ class _SigninViewBodyState extends State<SigninViewBody> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: kHorizintalPadding,
-      ),
+      padding: const EdgeInsets.symmetric(horizontal: kHorizintalPadding),
       child: SingleChildScrollView(
         child: Form(
           key: formKey,
           autovalidateMode: autovalidateMode,
           child: Column(
             children: [
-              const SizedBox(
-                height: 24,
-              ),
+              const SizedBox(height: 24),
               CustomTextFormField(
                 onSaved: (value) {
                   email = value!;
@@ -47,17 +43,13 @@ class _SigninViewBodyState extends State<SigninViewBody> {
                 hintText: 'البريد الالكتروني',
                 textInputType: TextInputType.emailAddress,
               ),
-              const SizedBox(
-                height: 16,
-              ),
+              const SizedBox(height: 16),
               PasswordField(
                 onSaved: (value) {
                   password = value!;
                 },
               ),
-              const SizedBox(
-                height: 16,
-              ),
+              const SizedBox(height: 16),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
@@ -69,9 +61,7 @@ class _SigninViewBodyState extends State<SigninViewBody> {
                   ),
                 ],
               ),
-              const SizedBox(
-                height: 33,
-              ),
+              const SizedBox(height: 33),
               CustomButton(
                 onPressed: () {
                   if (formKey.currentState!.validate()) {
@@ -85,17 +75,11 @@ class _SigninViewBodyState extends State<SigninViewBody> {
                 },
                 text: 'تسجيل دخول',
               ),
-              const SizedBox(
-                height: 33,
-              ),
+              const SizedBox(height: 33),
               const DontHaveAnAccountWidget(),
-              const SizedBox(
-                height: 33,
-              ),
+              const SizedBox(height: 33),
               const OrDivider(),
-              const SizedBox(
-                height: 16,
-              ),
+              const SizedBox(height: 16),
               SocialLoginButton(
                 onPressed: () {
                   // context.read<SigninCubit>().signinWithGoogle();
@@ -103,24 +87,20 @@ class _SigninViewBodyState extends State<SigninViewBody> {
                 image: Assets.imagesGoogleIcon,
                 title: 'تسجيل بواسطة جوجل',
               ),
-              const SizedBox(
-                height: 16,
-              ),
+              const SizedBox(height: 16),
               Platform.isIOS
                   ? Column(
-                      children: [
-                        SocialLoginButton(
-                          onPressed: () {
-                            // context.read<SigninCubit>().signinWithApple();
-                          },
-                          image: Assets.imagesApplIcon,
-                          title: 'تسجيل بواسطة أبل',
-                        ),
-                        const SizedBox(
-                          height: 16,
-                        ),
-                      ],
-                    )
+                    children: [
+                      SocialLoginButton(
+                        onPressed: () {
+                          // context.read<SigninCubit>().signinWithApple();
+                        },
+                        image: Assets.imagesApplIcon,
+                        title: 'تسجيل بواسطة أبل',
+                      ),
+                      const SizedBox(height: 16),
+                    ],
+                  )
                   : const SizedBox(),
               SocialLoginButton(
                 onPressed: () {

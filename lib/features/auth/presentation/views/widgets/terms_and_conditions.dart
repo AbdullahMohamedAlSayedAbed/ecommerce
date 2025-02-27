@@ -8,13 +8,14 @@ class TermsAndConditionsWidget extends StatefulWidget {
   const TermsAndConditionsWidget({super.key, required this.onChanged});
 
   final ValueChanged<bool> onChanged;
+
   @override
-  State<TermsAndConditionsWidget> createState() =>
-      _TermsAndConditionsWidgetState();
+  State<TermsAndConditionsWidget> createState() => _TermsAndConditionsWidgetState();
 }
 
 class _TermsAndConditionsWidgetState extends State<TermsAndConditionsWidget> {
   bool isTermsAccepted = false;
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -23,9 +24,7 @@ class _TermsAndConditionsWidgetState extends State<TermsAndConditionsWidget> {
           onChecked: (value) {
             isTermsAccepted = value;
             widget.onChanged(value);
-            setState(() {});
           },
-          isChecked: isTermsAccepted,
         ),
         const SizedBox(
           width: 16,

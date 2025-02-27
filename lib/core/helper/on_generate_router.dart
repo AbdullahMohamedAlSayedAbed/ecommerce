@@ -1,4 +1,5 @@
 import 'package:ecommerce/features/auth/presentation/views/login_view.dart';
+import 'package:ecommerce/features/auth/presentation/views/signup_view.dart';
 import 'package:ecommerce/features/on_boarding/presentation/views/on_boarding_view.dart';
 import 'package:ecommerce/features/splash/views/splash_view.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,7 @@ abstract class AppRouter {
       case login:
         return MaterialPageRoute(builder: (context) => const LoginView());
       case signUp:
-        return MaterialPageRoute(builder: (context) => const LoginView());
+        return MaterialPageRoute(builder: (context) => const SignupView());
       default:
         return MaterialPageRoute(builder: (context) => const Scaffold());
     }
