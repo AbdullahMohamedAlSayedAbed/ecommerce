@@ -7,6 +7,7 @@ abstract class AppRouter {
   static const String splash = 'splash';
   static const String onBoarding = 'onBoarding';
   static const String login = 'login';
+  static const String signUp = 'signUp';
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
       case splash:
@@ -14,6 +15,8 @@ abstract class AppRouter {
       case onBoarding:
         return MaterialPageRoute(builder: (context) => const OnBoardingView());
       case login:
+        return MaterialPageRoute(builder: (context) => const LoginView());
+      case signUp:
         return MaterialPageRoute(builder: (context) => const LoginView());
       default:
         return MaterialPageRoute(builder: (context) => const Scaffold());

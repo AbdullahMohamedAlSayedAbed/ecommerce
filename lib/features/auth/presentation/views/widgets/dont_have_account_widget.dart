@@ -1,3 +1,4 @@
+import 'package:ecommerce/core/helper/on_generate_router.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
@@ -29,7 +30,7 @@ class DontHaveAnAccountWidget extends StatelessWidget {
           TextSpan(
             recognizer: TapGestureRecognizer()
               ..onTap = () {
-                // Navigator.pushNamed(context, SignupView.routeName);
+                Navigator.pushNamed(context, AppRouter.signUp);
               },
             text: 'قم بإنشاء حساب',
             style:
