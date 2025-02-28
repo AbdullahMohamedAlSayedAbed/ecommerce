@@ -3,6 +3,8 @@ import 'dart:developer';
 import 'package:ecommerce/core/error/excaption.dart';
 import 'package:ecommerce/core/services/auth_services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class FirebaseAuthService extends AuthServices {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
@@ -32,8 +34,7 @@ class FirebaseAuthService extends AuthServices {
       } else if (e.code == 'network-request-failed') {
         throw CustomException("حدث خطأ في الشبكة");
       }
-            throw CustomException("حدث خطأ ما");
-
+      throw CustomException("حدث خطأ ما");
     } catch (e) {
       log(
         e.toString(),
@@ -73,7 +74,9 @@ class FirebaseAuthService extends AuthServices {
       return credential.user!;
     } on FirebaseAuthException catch (e) {
       log("${e.toString()}=={${e.code}}");
-      if (e.code == 'user-not-found' || e.code == 'wrong-password'|| e.code == 'invalid-credential') {
+      if (e.code == 'user-not-found' ||
+          e.code == 'wrong-password' ||
+          e.code == 'invalid-credential') {
         throw CustomException("البريد الالكتروني او كلمة المرور غير صحيحة");
       } else if (e.code == 'operation-not-allowed') {
         throw CustomException("العملية غير مسموحة");
@@ -88,14 +91,35 @@ class FirebaseAuthService extends AuthServices {
   }
 
   @override
-  Future<User?> signInWithFacebook() {
-    // TODO: implement signInWithFacebook
-    throw UnimplementedError();
+  Future<User?> signInWithFacebook() async {
+    final LoginResult loginResult = await FacebookAuth.instance.login();
+
+    // Create a credential from the access token
+    final OAuthCredential facebookAuthCredential =
+        FacebookAuthProvider.credential(loginResult.accessToken?.tokenString??'');
+
+    // Once signed in, return the UserCredential
+    return (await FirebaseAuth.instance.signInWithCredential(
+      facebookAuthCredential,
+    )).user!;
   }
 
   @override
-  Future<User?> signInWithGoogle() {
-    // TODO: implement signInWithGoogle
-    throw UnimplementedError();
+  Future<User?> signInWithGoogle() async {
+    // Trigger the authentication flow
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+    // Obtain the auth details from the request
+    final GoogleSignInAuthentication? googleAuth =
+        await googleUser?.authentication;
+
+    // Create a new credential
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth?.accessToken,
+      idToken: googleAuth?.idToken,
+    );
+
+    // Once signed in, return the UserCredential
+    return (await FirebaseAuth.instance.signInWithCredential(credential)).user!;
   }
 }

@@ -28,9 +28,9 @@ class AuthRepoImpl extends AuthRepo {
   Future<Either<Failure, UserEntity>> signInWithCredentials(
     String email,
     String password,
-  )async {
+  ) async {
     try {
-      var user =await authServices.signInWithCredentials(
+      var user = await authServices.signInWithCredentials(
         emailAddress: email,
         password: password,
       );
@@ -38,21 +38,41 @@ class AuthRepoImpl extends AuthRepo {
     } on CustomException catch (e) {
       return left(ServerFailure(e.message));
     } catch (e) {
-      log("signInWithCredentials = ${e.toString()}", name: "AuthRepoImpl.signInWithCredentials");
+      log(
+        "signInWithCredentials = ${e.toString()}",
+        name: "AuthRepoImpl.signInWithCredentials",
+      );
       return left(ServerFailure("حدث خطأ ما"));
     }
   }
 
   @override
-  Future<void> signInWithFacebook() {
-    // TODO: implement signInWithFacebook
-    throw UnimplementedError();
+  Future<Either<Failure, UserEntity>> signInWithFacebook() async{
+    try {
+      var user =await authServices.signInWithFacebook();
+      return right(UserModel.fromFirebaseUser(user!));
+    } catch (e) {
+      log(
+        "signInWithFacebook = ${e.toString()}",
+        name: "AuthRepoImpl.signInWithFacebook",
+      );
+      return left(ServerFailure("حدث خطأ ما"));
+      
+    }
   }
 
   @override
-  Future<void> signInWithGoogle() {
-    // TODO: implement signInWithGoogle
-    throw UnimplementedError();
+  Future<Either<Failure, UserEntity>> signInWithGoogle() async {
+    try {
+      var user = await authServices.signInWithGoogle();
+      return right(UserModel.fromFirebaseUser(user!));
+    } catch (e) {
+      log(
+        "signInWithGoogle = ${e.toString()}",
+        name: "AuthRepoImpl.signInWithGoogle",
+      );
+      return left(ServerFailure("حدث خطأ ما"));
+    }
   }
 
   @override
