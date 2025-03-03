@@ -11,7 +11,7 @@ abstract class AuthServices {
   Future<User?> signInAnonymously();
 
   Future<User?> signInWithGoogle();
-
+  Future<void> deleteUser();
   Future<User?> signInWithFacebook();
 
   Future<User?> signInWithCredentials({

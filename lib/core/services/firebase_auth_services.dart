@@ -122,4 +122,9 @@ class FirebaseAuthService extends AuthServices {
     // Once signed in, return the UserCredential
     return (await FirebaseAuth.instance.signInWithCredential(credential)).user!;
   }
+  
+  @override
+  Future<void> deleteUser() async{
+    await _firebaseAuth.currentUser!.delete();
+  }
 }

@@ -4,14 +4,18 @@ import 'package:dartz/dartz.dart';
 import 'package:ecommerce/core/error/excaption.dart';
 import 'package:ecommerce/core/error/failures.dart';
 import 'package:ecommerce/core/services/auth_services.dart';
+import 'package:ecommerce/core/services/database_service.dart';
+import 'package:ecommerce/core/utils/backend_endpoint.dart';
 import 'package:ecommerce/features/auth/data/model/user_model.dart';
 import 'package:ecommerce/features/auth/domin/entites/user_entity.dart';
 import 'package:ecommerce/features/auth/domin/repo/auth_repo.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthRepoImpl extends AuthRepo {
   final AuthServices authServices;
+  final DatabaseService databaseService;
 
-  AuthRepoImpl({required this.authServices});
+  AuthRepoImpl({required this.databaseService, required this.authServices});
   @override
   Future<String> getUser() {
     // TODO: implement getUser
@@ -47,26 +51,33 @@ class AuthRepoImpl extends AuthRepo {
   }
 
   @override
-  Future<Either<Failure, UserEntity>> signInWithFacebook() async{
+  Future<Either<Failure, UserEntity>> signInWithFacebook() async {
+    User? user;
     try {
-      var user =await authServices.signInWithFacebook();
-      return right(UserModel.fromFirebaseUser(user!));
+      user = await authServices.signInWithFacebook();
+      var userEntity = UserModel.fromFirebaseUser(user!);
+      await addUserData(user: userEntity);
+      return right(userEntity);
     } catch (e) {
+      await checkDeleteUser(user);
       log(
         "signInWithFacebook = ${e.toString()}",
         name: "AuthRepoImpl.signInWithFacebook",
       );
       return left(ServerFailure("حدث خطأ ما"));
-      
     }
   }
 
   @override
   Future<Either<Failure, UserEntity>> signInWithGoogle() async {
+    User? user;
     try {
-      var user = await authServices.signInWithGoogle();
-      return right(UserModel.fromFirebaseUser(user!));
+      user = await authServices.signInWithGoogle();
+      var userEntity = UserModel.fromFirebaseUser(user!);
+      await addUserData(user: userEntity);
+      return right(userEntity);
     } catch (e) {
+      await checkDeleteUser(user);
       log(
         "signInWithGoogle = ${e.toString()}",
         name: "AuthRepoImpl.signInWithGoogle",
@@ -87,17 +98,36 @@ class AuthRepoImpl extends AuthRepo {
     required String password,
     required String name,
   }) async {
+    User? user;
     try {
-      var user = await authServices.createUserWithEmailAndPassword(
+      user = await authServices.createUserWithEmailAndPassword(
         emailAddress: email,
         password: password,
       );
-      return right(UserModel.fromFirebaseUser(user));
+      var userEntity = UserModel.fromFirebaseUser(user, name: name);
+      await addUserData(user: userEntity);
+      return right(userEntity);
     } on CustomException catch (e) {
+      await checkDeleteUser(user);
       return left(ServerFailure(e.message.toString()));
     } catch (e) {
+      await checkDeleteUser(user);
       log("signUp = ${e.toString()}", name: "AuthRepoImpl.signUp");
       return left(ServerFailure("حدث خطأ ما"));
     }
+  }
+
+  Future<void> checkDeleteUser(User? user) async {
+    if (user != null) {
+      await authServices.deleteUser();
+    }
+  }
+
+  @override
+  Future addUserData({required UserEntity user}) async {
+    await databaseService.addDate(
+      path: BackendEndpoint.addUserData,
+      data: user.toMap(),
+    );
   }
 }
