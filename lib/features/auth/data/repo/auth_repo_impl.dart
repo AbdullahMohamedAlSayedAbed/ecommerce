@@ -17,9 +17,12 @@ class AuthRepoImpl extends AuthRepo {
 
   AuthRepoImpl({required this.databaseService, required this.authServices});
   @override
-  Future<String> getUser() {
-    // TODO: implement getUser
-    throw UnimplementedError();
+  Future<UserEntity> getUserData({required String uid}) async {
+    var user = await databaseService.getData(
+      path: BackendEndpoint.getUsersData,
+      documentId: uid,
+    );
+    return UserModel.fromJson(user);
   }
 
   @override
@@ -38,7 +41,8 @@ class AuthRepoImpl extends AuthRepo {
         emailAddress: email,
         password: password,
       );
-      return right(UserModel.fromFirebaseUser(user!));
+      var userEntity =await getUserData(uid: user!.uid);
+      return right(userEntity);
     } on CustomException catch (e) {
       return left(ServerFailure(e.message));
     } catch (e) {
@@ -56,7 +60,7 @@ class AuthRepoImpl extends AuthRepo {
     try {
       user = await authServices.signInWithFacebook();
       var userEntity = UserModel.fromFirebaseUser(user!);
-      await addUserData(user: userEntity);
+      await addUserData(user: userEntity, uid: user.uid);
       return right(userEntity);
     } catch (e) {
       await checkDeleteUser(user);
@@ -74,7 +78,7 @@ class AuthRepoImpl extends AuthRepo {
     try {
       user = await authServices.signInWithGoogle();
       var userEntity = UserModel.fromFirebaseUser(user!);
-      await addUserData(user: userEntity);
+      await addUserData(user: userEntity, uid: user.uid);
       return right(userEntity);
     } catch (e) {
       await checkDeleteUser(user);
@@ -105,7 +109,7 @@ class AuthRepoImpl extends AuthRepo {
         password: password,
       );
       var userEntity = UserModel.fromFirebaseUser(user, name: name);
-      await addUserData(user: userEntity);
+      await addUserData(user: userEntity, uid: user.uid);
       return right(userEntity);
     } on CustomException catch (e) {
       await checkDeleteUser(user);
@@ -124,10 +128,11 @@ class AuthRepoImpl extends AuthRepo {
   }
 
   @override
-  Future addUserData({required UserEntity user}) async {
+  Future addUserData({required UserEntity user, required String uid}) async {
     await databaseService.addDate(
       path: BackendEndpoint.addUserData,
       data: user.toMap(),
+      documentId: uid,
     );
   }
 }

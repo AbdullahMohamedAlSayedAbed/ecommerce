@@ -127,4 +127,6 @@ class FirebaseAuthService extends AuthServices {
   Future<void> deleteUser() async{
     await _firebaseAuth.currentUser!.delete();
   }
+
+  
 }

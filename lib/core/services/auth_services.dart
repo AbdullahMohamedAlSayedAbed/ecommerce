@@ -18,4 +18,5 @@ abstract class AuthServices {
     required String emailAddress,
     required String password,
   });
+  
 }
