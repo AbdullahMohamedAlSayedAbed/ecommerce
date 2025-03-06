@@ -4,7 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 class FirestoreService implements DatabaseService {
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
-  final String _uid = FirebaseAuth.instance.currentUser!.uid;
+  // final String _uid = FirebaseAuth.instance.currentUser!.uid;
 
   @override
   Future<void> addDate({
@@ -16,8 +16,20 @@ class FirestoreService implements DatabaseService {
   }
 
   @override
-  Future<Map<String,dynamic>> getData({required String path, required String documentId}) async {
-    var userRef = await firestore.collection('users').doc(documentId).get();
+  Future<Map<String, dynamic>> getData({
+    required String path,
+    required String documentId,
+  }) async {
+    var userRef = await firestore.collection(path).doc(documentId).get();
     return userRef.data() as Map<String, dynamic>;
+  }
+
+  @override
+  Future<bool> checkIfDataExists({
+    required String path,
+    required String documentId,
+  }) async {
+    var data = await firestore.collection(path).doc(documentId).get();
+    return data.exists;
   }
 }

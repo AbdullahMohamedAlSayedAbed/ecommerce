@@ -12,14 +12,13 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Future.wait([
-    Prefs.init(),
-    Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform),
-  ]);
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await Prefs.init();
   setupServiceLocator();
   Bloc.observer = CustomBlocObserver();
   runApp(const FruitHub());
 }
+
 
 class FruitHub extends StatelessWidget {
   const FruitHub({super.key});
