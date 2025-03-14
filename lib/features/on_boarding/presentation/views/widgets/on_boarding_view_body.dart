@@ -59,11 +59,18 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
           maintainAnimation: true,
           maintainState: true,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: kHorizintalPadding),
-            child: CustomButton(onPressed: () {
-              Prefs.setBool(kIsOnBoardingViewSeen, true);
-              Navigator.pushNamedAndRemoveUntil(context, AppRouter.login, (route) => false);
-            }, text: 'ابدأ الان'),
+            padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
+            child: CustomButton(
+              onPressed: () {
+                Prefs.setBool(kIsOnBoardingViewSeen, true);
+                Navigator.pushNamedAndRemoveUntil(
+                  context,
+                  AppRouter.login,
+                  (route) => false,
+                );
+              },
+              text: 'ابدأ الان',
+            ),
           ),
         ),
         const SizedBox(height: 43),
