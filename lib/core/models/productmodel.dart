@@ -6,7 +6,7 @@ import 'package:ecommerce/core/models/review_model.dart';
 class ProductModel {
   final String title;
   final String description;
-  final File image;
+  final File? image;
   final num price;
   final String code;
   final bool isFeatured;
@@ -16,7 +16,7 @@ class ProductModel {
   final int numberOfCalories;
   final int unitAmount;
   final int sellingCount;
-  final num avgRating, ratingCount;
+  final num? avgRating, ratingCount;
   final List<ReviewModel>? reviews;
 
   ProductModel({
@@ -30,7 +30,7 @@ class ProductModel {
     required this.unitAmount,
     required this.title,
     required this.description,
-    required this.image,
+    this.image,
     required this.price,
     required this.code,
     required this.isFeatured,
@@ -39,7 +39,9 @@ class ProductModel {
   factory ProductModel.fromEntity(ProductEntity addProductInputEntity) {
     return ProductModel(
       reviews:
-          addProductInputEntity.reviews?.map((e) => ReviewModel.fromEntity(e)).toList(),
+          addProductInputEntity.reviews
+              ?.map((e) => ReviewModel.fromEntity(e))
+              .toList(),
       expirationsMonth: addProductInputEntity.expirationsMonth,
       numberOfCalories: addProductInputEntity.numberOfCalories,
       unitAmount: addProductInputEntity.unitAmount,
@@ -56,7 +58,7 @@ class ProductModel {
       isOrganic: addProductInputEntity.isOrganic,
     );
   }
- ProductEntity toEntity(){
+  ProductEntity toEntity() {
     return ProductEntity(
       reviews: reviews?.map((e) => e.toEntity()).toList(),
       expirationsMonth: expirationsMonth,
@@ -71,14 +73,17 @@ class ProductModel {
       isFeatured: isFeatured,
       imageUrl: imageUrl,
       isOrganic: isOrganic,
-    );  
+    );
   }
+
   factory ProductModel.fromJson(Map<String, dynamic> json) {
     return ProductModel(
-      reviews:json['reviews'] == null ? [] :
-          (json['reviews'] as List)
-              .map((e) => ReviewModel.fromJson(e))
-              .toList(),
+      reviews:
+          json['reviews'] == null
+              ? []
+              : (json['reviews'] as List)
+                  .map((e) => ReviewModel.fromJson(e))
+                  .toList(),
       expirationsMonth: json['expirationsMonth'],
       numberOfCalories: json['numberOfCalories'],
       unitAmount: json['unitAmount'],

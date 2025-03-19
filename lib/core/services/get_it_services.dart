@@ -1,3 +1,5 @@
+import 'package:ecommerce/core/repos/product_repo/product_repo.dart';
+import 'package:ecommerce/core/repos/product_repo/product_repo_impl.dart';
 import 'package:ecommerce/core/services/auth_services.dart';
 import 'package:ecommerce/core/services/database_service.dart';
 import 'package:ecommerce/core/services/firebase_auth_services.dart';
@@ -11,8 +13,13 @@ final getIt = GetIt.instance;
 void setupServiceLocator() {
   getIt.registerSingleton<AuthServices>(FirebaseAuthService());
   getIt.registerSingleton<DatabaseService>(FirestoreService());
-  getIt.registerSingleton<AuthRepo>(AuthRepoImpl(
-    databaseService: getIt<DatabaseService>(),
-    authServices: getIt<AuthServices>(),
-  ));
+  getIt.registerSingleton<ProductsRepo>(
+    ProductRepoImpl(databaseService: getIt<DatabaseService>()),
+  );
+  getIt.registerSingleton<AuthRepo>(
+    AuthRepoImpl(
+      databaseService: getIt<DatabaseService>(),
+      authServices: getIt<AuthServices>(),
+    ),
+  );
 }

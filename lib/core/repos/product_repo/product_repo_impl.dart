@@ -12,40 +12,39 @@ class ProductRepoImpl implements ProductsRepo {
   final DatabaseService databaseService;
   ProductRepoImpl({required this.databaseService});
   @override
-  Future<Either<Failure, List<ProductEntity>>> getProducts(
-    ProductEntity addProductInputEntity,
-  ) async {
+  Future<Either<Failure, List<ProductEntity>>> getProducts() async {
     try {
-  var data =
-      await databaseService.getData(path: BackendEndpoint.getProducts)
-          as List<Map<String, dynamic>>;
-  List<ProductEntity> products =
-      data.map((e) => ProductModel.fromJson(e).toEntity()).toList();
-  return right(products);
-}  catch (e) {
-  log(e.toString(), name: "ProductRepoImpl.getProducts");
-  return left(ServerFailure('حدث خطاء ما'));
-}
+      var data =
+          await databaseService.getData(path: BackendEndpoint.getProducts)
+              as List<Map<String, dynamic>>;
+      List<ProductEntity> products =
+          data.map((e) => ProductModel.fromJson(e).toEntity()).toList();
+      return right(products);
+    } catch (e) {
+      log(e.toString(), name: "ProductRepoImpl.getProducts");
+      return left(ServerFailure('حدث خطاء ما'));
+    }
   }
 
   @override
-  Future<Either<Failure, List<ProductEntity>>> getBestSellingProducts(
-    ProductEntity addProductInputEntity,
-  ) async {
-     try {
-  var data =
-      await databaseService.getData(path: BackendEndpoint.getProducts,query: {
-        "limit": 10,
-        "orderBy": "sellingCount",
-        "descending": true,
-      })
-          as List<Map<String, dynamic>>;
-  List<ProductEntity> products =
-      data.map((e) => ProductModel.fromJson(e).toEntity()).toList();
-  return right(products);
-}  catch (e) {
-  log(e.toString(), name: "ProductRepoImpl.getProducts");
-  return left(ServerFailure('حدث خطاء ما'));
-}
+  Future<Either<Failure, List<ProductEntity>>> getBestSellingProducts() async {
+    try {
+      var data =
+          await databaseService.getData(
+                path: BackendEndpoint.getProducts,
+                query: {
+                  "limit": 10,
+                  "orderBy": "sellingCount",
+                  "descending": true,
+                },
+              )
+              as List<Map<String, dynamic>>;
+      List<ProductEntity> products =
+          data.map((e) => ProductModel.fromJson(e).toEntity()).toList();
+      return right(products);
+    } catch (e) {
+      log(e.toString(), name: "ProductRepoImpl.getProducts");
+      return left(ServerFailure('حدث خطاء ما'));
+    }
   }
 }

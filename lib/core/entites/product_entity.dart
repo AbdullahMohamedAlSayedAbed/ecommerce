@@ -6,7 +6,7 @@ import 'package:ecommerce/core/entites/review_entity.dart';
 class ProductEntity {
   final String title;
   final String description;
-  final File image;
+  final File? image;
   final num price;
   final String code;
   final bool isFeatured;
@@ -26,7 +26,7 @@ class ProductEntity {
     required this.unitAmount,
     required this.title,
     required this.description,
-    required this.image,
+     this.image,
     required this.price,
     required this.code,
     required this.isFeatured,
