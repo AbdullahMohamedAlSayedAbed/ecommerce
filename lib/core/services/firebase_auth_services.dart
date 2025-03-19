@@ -1,12 +1,7 @@
-import 'dart:convert';
 import 'dart:developer';
 
-import 'package:ecommerce/core/constants/constants.dart';
 import 'package:ecommerce/core/error/excaption.dart';
 import 'package:ecommerce/core/services/auth_services.dart';
-import 'package:ecommerce/core/services/shared_preferences_singleton.dart';
-import 'package:ecommerce/features/auth/data/model/user_model.dart';
-import 'package:ecommerce/features/auth/domin/entites/user_entity.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';

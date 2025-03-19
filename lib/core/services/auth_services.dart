@@ -1,4 +1,3 @@
-import 'package:ecommerce/features/auth/domin/entites/user_entity.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 abstract class AuthServices {

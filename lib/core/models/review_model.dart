@@ -34,6 +34,15 @@ class ReviewModel {
       reviewDescription: reviewEntity.reviewDescription,
     );
   }
+ ReviewEntity toEntity(){
+    return ReviewEntity(
+      name: name,
+      image: image,
+      ratting: ratting,
+      data: data,
+      reviewDescription: reviewDescription,
+    );
+  }
   toJson(){
     return{
       'name':name,

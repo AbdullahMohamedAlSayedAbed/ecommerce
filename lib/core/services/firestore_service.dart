@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecommerce/core/services/database_service.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class FirestoreService implements DatabaseService {
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
@@ -16,12 +15,30 @@ class FirestoreService implements DatabaseService {
   }
 
   @override
-  Future<Map<String, dynamic>> getData({
+  Future<dynamic> getData({
     required String path,
-    required String documentId,
+    String? documentId,
+    Map<String, dynamic>? query,
   }) async {
-    var userRef = await firestore.collection(path).doc(documentId).get();
-    return userRef.data() as Map<String, dynamic>;
+    if (documentId != null) {
+      var data = await firestore.collection(path).doc(documentId).get();
+      return data.data() as Map<String, dynamic>;
+    } else {
+      Query<Map<String, dynamic>> data = firestore.collection(path);
+      if (query != null) {
+        if (query['orderBy'] != null) {
+          var orderBy = query['orderBy'];
+          var descending = query['descending'];
+          data = data.orderBy(orderBy, descending: descending);
+        }
+        if (query['limit'] != null) {
+          var limit = query['limit'];
+          data = data.limit(limit);
+        }
+      }
+      var result = await data.get();
+      return result.docs.map((e) => e.data()).toList();
+    }
   }
 
   @override
