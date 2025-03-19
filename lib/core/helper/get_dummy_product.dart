@@ -12,7 +12,6 @@ ProductEntity getDummyProduct() {
     price: 1,
     code: "test",
     isFeatured: true,
-    imageUrl: "test",
     isOrganic: true,
   );
 }

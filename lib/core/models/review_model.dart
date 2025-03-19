@@ -4,7 +4,7 @@ import 'package:ecommerce/core/entites/review_entity.dart';
 class ReviewModel {
   final String name;
   final String image;
-  final String ratting;
+  final num ratting;
   final String data;
   final String reviewDescription;
 

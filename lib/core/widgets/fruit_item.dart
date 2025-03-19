@@ -1,7 +1,7 @@
 import 'package:ecommerce/core/entites/product_entity.dart';
 import 'package:ecommerce/core/utils/app_colors.dart';
-import 'package:ecommerce/core/utils/app_images.dart';
 import 'package:ecommerce/core/utils/app_text_styles.dart';
+import 'package:ecommerce/core/widgets/custom_network_image.dart';
 import 'package:flutter/material.dart';
 
 class FruitItem extends StatelessWidget {
@@ -16,12 +16,15 @@ class FruitItem extends StatelessWidget {
       ),
       child: Stack(
         children: [
-          IconButton(onPressed: () {}, icon: Icon(Icons.favorite_outline)),
           Positioned.fill(
             child: Column(
               children: [
                 SizedBox(height: 20),
-                Image.network(product.imageUrl!, height: 120, width: 120),
+                product.imageUrl == null
+                    ? Container(color: Colors.grey, width: 100, height: 100)
+                    : Flexible(
+                      child: CustomNetworkImage(imageUrl: product.imageUrl!),
+                    ),
                 SizedBox(height: 24),
                 ListTile(
                   title: Text(
@@ -35,13 +38,13 @@ class FruitItem extends StatelessWidget {
                     TextSpan(
                       children: [
                         TextSpan(
-                          text: '\$${product.price} / جنية / ',
+                          text: '\$${product.price} جنية / ',
                           style: TextStyles.bold13.copyWith(
                             color: AppColors.secondaryColor,
                           ),
                         ),
                         TextSpan(
-                          text: 'الكيلو',
+                          text: 'كيلو',
                           style: TextStyles.semiBold13.copyWith(
                             color: AppColors.lightSecondaryColor,
                           ),
@@ -61,6 +64,7 @@ class FruitItem extends StatelessWidget {
               ],
             ),
           ),
+          IconButton(onPressed: () {}, icon: Icon(Icons.favorite_outline)),
         ],
       ),
     );

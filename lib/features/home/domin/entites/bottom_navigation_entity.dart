@@ -17,14 +17,14 @@ List<BottomNavigationEntity> get bottomNavigationsBarItem => [
     title: "الرئيسية",
   ),
   BottomNavigationEntity(
-    activeImage: Assets.imagesVuesaxBoldShoppingCart,
-    inActiveImage: Assets.imagesVuesaxOutlineShoppingCart,
-    title: "سلة التسوق",
-  ),
-  BottomNavigationEntity(
     activeImage: Assets.imagesVuesaxBoldProducts,
     inActiveImage: Assets.imagesVuesaxOutlineProducts,
     title: "المنتجات",
+  ),
+  BottomNavigationEntity(
+    activeImage: Assets.imagesVuesaxBoldShoppingCart,
+    inActiveImage: Assets.imagesVuesaxOutlineShoppingCart,
+    title: "سلة التسوق",
   ),
   BottomNavigationEntity(
     activeImage: Assets.imagesVuesaxBoldUser,

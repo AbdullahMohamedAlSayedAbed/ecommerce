@@ -3,8 +3,8 @@ import 'package:ecommerce/features/home/presentation/views/widgets/navigation_ba
 import 'package:flutter/material.dart';
 
 class CustomButtonNavigationBar extends StatefulWidget {
-  const CustomButtonNavigationBar({super.key});
-
+  const CustomButtonNavigationBar({super.key, required this.onChanged});
+  final ValueChanged<int> onChanged;
   @override
   State<CustomButtonNavigationBar> createState() =>
       _CustomButtonNavigationBarState();
@@ -16,7 +16,7 @@ class _CustomButtonNavigationBarState extends State<CustomButtonNavigationBar> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Container(
-        padding: const EdgeInsets.symmetric( vertical: 16, horizontal: 20),
+        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
         decoration: ShapeDecoration(
           color: Colors.white,
           shape: RoundedRectangleBorder(
@@ -34,13 +34,16 @@ class _CustomButtonNavigationBarState extends State<CustomButtonNavigationBar> {
             ),
           ],
         ),
-        child: Row( 
+        child: Row(
           children: List.generate(
             bottomNavigationsBarItem.length,
             (index) => Expanded(
               flex: index == currentIndex ? 3 : 2,
               child: InkWell(
-                onTap: () => setState(() => currentIndex = index),
+                onTap: () => setState(() {
+                  currentIndex = index;
+                  widget.onChanged(index);
+                }),
                 child: NavigationBarItem(
                   isActive: index == currentIndex,
                   bottomNavigationEntity: bottomNavigationsBarItem[index],

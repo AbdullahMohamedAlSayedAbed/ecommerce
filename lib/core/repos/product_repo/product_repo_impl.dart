@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:ecommerce/core/entites/product_entity.dart';
 import 'package:ecommerce/core/error/failures.dart';
-import 'package:ecommerce/core/models/productmodel.dart';
+import 'package:ecommerce/core/models/product_model.dart';
 import 'package:ecommerce/core/repos/product_repo/product_repo.dart';
 import 'package:ecommerce/core/services/database_service.dart';
 import 'package:ecommerce/core/utils/backend_endpoint.dart';
