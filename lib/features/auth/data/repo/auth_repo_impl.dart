@@ -1,10 +1,13 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
+import 'package:ecommerce/core/constants/constants.dart';
 import 'package:ecommerce/core/error/excaption.dart';
 import 'package:ecommerce/core/error/failures.dart';
 import 'package:ecommerce/core/services/auth_services.dart';
 import 'package:ecommerce/core/services/database_service.dart';
+import 'package:ecommerce/core/services/shared_preferences_singleton.dart';
 import 'package:ecommerce/core/utils/backend_endpoint.dart';
 import 'package:ecommerce/features/auth/data/model/user_model.dart';
 import 'package:ecommerce/features/auth/domin/entites/user_entity.dart';
@@ -42,6 +45,7 @@ class AuthRepoImpl extends AuthRepo {
         password: password,
       );
       var userEntity = await getUserData(uid: user!.uid);
+      await saveUserData(user: userEntity);
       return right(userEntity);
     } on CustomException catch (e) {
       return left(ServerFailure(e.message));
@@ -59,11 +63,12 @@ class AuthRepoImpl extends AuthRepo {
     User? user;
     try {
       user = await authServices.signInWithFacebook();
-      var userEntity = UserModel.fromFirebaseUser(user!);
+      var userEntity = UserModel.fromFirebaseUser(user!, name: user.displayName);
       bool isUserExist = await databaseService.checkIfDataExists(
         path: BackendEndpoint.getUsersData,
         documentId: user.uid,
       );
+      await saveUserData(user: userEntity);
       if (!isUserExist) {
         await addUserData(user: userEntity, uid: user.uid);
       } else {
@@ -85,11 +90,12 @@ class AuthRepoImpl extends AuthRepo {
     User? user;
     try {
       user = await authServices.signInWithGoogle();
-      var userEntity = UserModel.fromFirebaseUser(user!);
+      var userEntity = UserModel.fromFirebaseUser(user!, name: user.displayName);
       bool isUserExist = await databaseService.checkIfDataExists(
         path: BackendEndpoint.getUsersData,
         documentId: user.uid,
       );
+      await saveUserData(user: userEntity);
       if (!isUserExist) {
         await addUserData(user: userEntity, uid: user.uid);
       } else {
@@ -145,10 +151,16 @@ class AuthRepoImpl extends AuthRepo {
 
   @override
   Future addUserData({required UserEntity user, required String uid}) async {
+
     await databaseService.addDate(
       path: BackendEndpoint.addUserData,
-      data: user.toMap(),
+      data: UserModel.fromEntity(user).toJson(),
       documentId: uid,
     );
+  }
+    @override
+  Future saveUserData({required UserEntity user}) async {
+    var jsonData = jsonEncode(UserModel.fromEntity(user).toJson());
+    await Prefs.setString(kUserData, jsonData);
   }
 }

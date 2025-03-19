@@ -14,6 +14,7 @@ AppBar buildAppBar() {
     ],
     backgroundColor: Colors.transparent,
     elevation: 0,
+    centerTitle: true,
     title: const Text(
       'الأكثر مبيعًا',
       textAlign: TextAlign.center,

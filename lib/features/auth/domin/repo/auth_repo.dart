@@ -18,4 +18,5 @@ abstract class AuthRepo {
   Future<void> signOut();
   Future<bool> isSignedIn();
   Future<UserEntity> getUserData({required String uid});
+  Future saveUserData({required UserEntity user});
 }

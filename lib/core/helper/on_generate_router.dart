@@ -1,5 +1,6 @@
 import 'package:ecommerce/features/auth/presentation/views/login_view.dart';
 import 'package:ecommerce/features/auth/presentation/views/signup_view.dart';
+import 'package:ecommerce/features/best_selling_products/presentation/views/best_selling_view.dart';
 import 'package:ecommerce/features/home/presentation/views/home_view.dart';
 import 'package:ecommerce/features/on_boarding/presentation/views/on_boarding_view.dart';
 import 'package:ecommerce/features/splash/views/splash_view.dart';
@@ -11,6 +12,7 @@ abstract class AppRouter {
   static const String login = 'login';
   static const String signUp = 'signUp';
   static const String home = 'home';
+  static const String bestSelling= 'bestSelling';
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
       case splash:
@@ -23,6 +25,8 @@ abstract class AppRouter {
         return MaterialPageRoute(builder: (context) => const SignupView());
       case home:
         return MaterialPageRoute(builder: (context) => const HomeView());
+      case bestSelling:
+        return MaterialPageRoute(builder: (context) => const BestSellingView());
       default:
         return MaterialPageRoute(builder: (context) => const Scaffold());
     }

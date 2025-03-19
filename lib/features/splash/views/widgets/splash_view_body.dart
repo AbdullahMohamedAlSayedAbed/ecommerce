@@ -1,8 +1,9 @@
 import 'package:ecommerce/core/constants/constants.dart';
 import 'package:ecommerce/core/helper/on_generate_router.dart';
+import 'package:ecommerce/core/services/auth_services.dart';
+import 'package:ecommerce/core/services/get_it_services.dart';
 import 'package:ecommerce/core/services/shared_preferences_singleton.dart';
 import 'package:ecommerce/core/utils/app_images.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:svg_flutter/svg.dart';
 
@@ -38,7 +39,7 @@ class _SplashViewBodyState extends State<SplashViewBody> {
 
   void executeNavigation() {
     bool isOnBoarding = Prefs.getBool(kIsOnBoardingViewSeen);
-    bool isLogin = FirebaseAuth.instance.currentUser != null;
+    bool isLogin = getIt<AuthServices>().isSignIn();
 
     Future.delayed(const Duration(seconds: 3), () {
       if (!isOnBoarding) {
