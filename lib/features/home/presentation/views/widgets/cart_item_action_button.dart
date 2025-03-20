@@ -1,6 +1,7 @@
 import 'package:ecommerce/core/utils/app_colors.dart';
 import 'package:ecommerce/core/utils/app_text_styles.dart';
 import 'package:ecommerce/features/home/domin/entites/cart_item_entity.dart';
+import 'package:ecommerce/features/home/presentation/cubits/cart_cubit/cart_cubit.dart';
 import 'package:ecommerce/features/home/presentation/cubits/cart_item_cubit/cart_item_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,7 +23,9 @@ class CartItemActionButton extends StatelessWidget {
         height: 24,
         decoration: ShapeDecoration(
           color: isAdd ? AppColors.primaryColor : const Color(0xFFF1F1F5),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(100),
+          ),
         ),
         child: Icon(
           !isAdd ? Icons.remove : Icons.add,
@@ -54,10 +57,17 @@ class CartItemActionButtons extends StatelessWidget {
           textAlign: TextAlign.center,
           style: TextStyles.bold16,
         ),
-        CartItemActionButton(isAdd: false, onTap: () {
-          cartItemEntity.decreaseCount;
-          context.read<CartItemCubit>().changeQuantity(cartItemEntity);
-        }),
+        CartItemActionButton(
+          isAdd: false,
+          onTap: () {
+            cartItemEntity.decreaseCount;
+            if (cartItemEntity.count < 1) {
+              context.read<CartCubit>().removeItemFromCart(cartItemEntity);
+            } else {
+              context.read<CartItemCubit>().changeQuantity(cartItemEntity);
+            }
+          },
+        ),
       ],
     );
   }
