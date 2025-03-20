@@ -6,15 +6,19 @@ class CheckoutSteps extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      children: List.generate(getSteps.length, (index) {
+      children: List.generate(getSteps().length, (index) {
         return Expanded(
-          child: StepItem(text: getSteps[index], index: index, isActive: false),
+          child: StepItem(
+            text: getSteps()[index],
+            index: index + 1,
+            isActive: false,
+          ),
         );
       }),
     );
   }
 
-  List<String> get getSteps {
-    return ['الشحن', 'العنوان', 'الدفع', 'المراجعه'];
-  }
 }
+  List<String>  getSteps() {
+    return ['الشحن', 'العنوان', 'الدفع'];
+  }
