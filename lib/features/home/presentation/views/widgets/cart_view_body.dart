@@ -32,7 +32,7 @@ class CartViewBody extends StatelessWidget {
                   ],
                 ),
               ),
-              CartItemList(cartItems: context.read<CartCubit>().cart.cartItems),
+              CartItemList(cartItems: context.watch<CartCubit>().cart.cartItems),
             ],
           ),
           Positioned(
