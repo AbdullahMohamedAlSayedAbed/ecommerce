@@ -39,11 +39,7 @@ class CartItemActionButtons extends StatelessWidget {
         CartItemActionButton(isAdd: true, onTap: () {}),
         Text('3', textAlign: TextAlign.center, style: TextStyles.bold16),
         CartItemActionButton(isAdd: false, onTap: () {}),
-        Spacer(),
-        Text(
-          '60 جنيه',
-          style: TextStyles.bold16.copyWith(color: AppColors.secondaryColor),
-        ),
+
       ],
     );
   }

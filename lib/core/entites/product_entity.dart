@@ -1,15 +1,16 @@
 import 'dart:io';
 
 import 'package:ecommerce/core/entites/review_entity.dart';
+import 'package:equatable/equatable.dart';
 
-class ProductEntity {
+class ProductEntity extends Equatable {
   final String title;
   final String description;
   final File? image;
   final num price;
   final String code;
   final bool isFeatured;
-  String? imageUrl;
+  final String? imageUrl;
   final int expirationsMonth;
   final bool isOrganic;
   final int numberOfCalories;
@@ -32,4 +33,7 @@ class ProductEntity {
     required this.isFeatured,
     this.imageUrl,
   });
+
+  @override
+  List<Object?> get props => [code];
 }
