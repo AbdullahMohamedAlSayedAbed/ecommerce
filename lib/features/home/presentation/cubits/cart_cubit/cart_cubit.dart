@@ -2,7 +2,6 @@ import 'package:bloc/bloc.dart';
 import 'package:ecommerce/core/entites/product_entity.dart';
 import 'package:ecommerce/features/home/domin/entites/cart_entity.dart';
 import 'package:ecommerce/features/home/domin/entites/cart_item_entity.dart';
-import 'package:equatable/equatable.dart';
 
 part 'cart_state.dart';
 

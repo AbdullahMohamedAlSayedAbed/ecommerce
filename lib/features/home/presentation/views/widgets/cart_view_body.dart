@@ -1,9 +1,11 @@
 import 'package:ecommerce/core/constants/constants.dart';
 import 'package:ecommerce/core/widgets/custom_app_bar.dart';
-import 'package:ecommerce/core/widgets/custom_button.dart';
+import 'package:ecommerce/features/home/presentation/cubits/cart_cubit/cart_cubit.dart';
 import 'package:ecommerce/features/home/presentation/views/widgets/cart_header.dart';
 import 'package:ecommerce/features/home/presentation/views/widgets/cart_item_list.dart';
+import 'package:ecommerce/features/home/presentation/views/widgets/custom_cart_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CartViewBody extends StatelessWidget {
   const CartViewBody({super.key});
@@ -30,16 +32,14 @@ class CartViewBody extends StatelessWidget {
                   ],
                 ),
               ),
-              CartItemList(
-                cartItems: [],
-              ),
+              CartItemList(cartItems: context.read<CartCubit>().cart.cartItems),
             ],
           ),
           Positioned(
             bottom: MediaQuery.of(context).size.height * .1,
             left: 16,
             right: 16,
-            child: CustomButton(onPressed: () {}, text: 'الدفع  120جنيه'),
+            child: CustomCartButton(),
           ),
         ],
       ),
