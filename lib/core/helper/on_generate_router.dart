@@ -2,6 +2,7 @@ import 'package:ecommerce/features/auth/presentation/views/login_view.dart';
 import 'package:ecommerce/features/auth/presentation/views/signup_view.dart';
 import 'package:ecommerce/features/best_selling_products/presentation/views/best_selling_view.dart';
 import 'package:ecommerce/features/checkout/presentation/views/checkout_view.dart';
+import 'package:ecommerce/features/home/domin/entites/cart_entity.dart';
 import 'package:ecommerce/features/home/presentation/views/main_view.dart';
 import 'package:ecommerce/features/on_boarding/presentation/views/on_boarding_view.dart';
 import 'package:ecommerce/features/splash/views/splash_view.dart';
@@ -30,7 +31,9 @@ abstract class AppRouter {
       case bestSelling:
         return MaterialPageRoute(builder: (context) => const BestSellingView());
       case checkout:
-        return MaterialPageRoute(builder: (context) => const CheckoutView());
+        return MaterialPageRoute(builder: (context) =>  CheckoutView(
+          cartEntity: settings.arguments as CartEntity
+        ));
       default:
         return MaterialPageRoute(builder: (context) => const Scaffold());
     }

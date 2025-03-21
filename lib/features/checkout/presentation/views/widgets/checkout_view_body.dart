@@ -4,33 +4,10 @@ import 'package:ecommerce/features/checkout/presentation/views/widgets/checkout_
 import 'package:ecommerce/features/checkout/presentation/views/widgets/checkout_steps_page_view.dart';
 import 'package:flutter/material.dart';
 
-class CheckoutViewBody extends StatefulWidget {
-  const CheckoutViewBody({super.key});
-
-  @override
-  State<CheckoutViewBody> createState() => _CheckoutViewBodyState();
-}
-
-class _CheckoutViewBodyState extends State<CheckoutViewBody> {
-  late PageController pageController;
-  @override
-  void initState() {
-    pageController = PageController();
-    pageController.addListener(() {
-      setState(() {
-        currentIndex = pageController.page!.toInt();
-      });
-    });
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    pageController.dispose();
-    super.dispose();
-  }
-
-  int currentIndex = 0;
+class CheckoutViewBody extends StatelessWidget {
+  const CheckoutViewBody({super.key, required this.pageController, required this.currentIndex});
+  final PageController pageController;
+  final int currentIndex;
   @override
   Widget build(BuildContext context) {
     return Padding(

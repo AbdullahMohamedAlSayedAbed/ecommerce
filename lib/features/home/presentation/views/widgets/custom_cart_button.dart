@@ -15,8 +15,9 @@ class CustomCartButton extends StatelessWidget {
       builder: (context, state) {
         return CustomButton(
           onPressed: () {
-            if (context.read<CartCubit>().cart.calculateTotalPriceCart > 0) {
-              Navigator.pushNamed(context, AppRouter.checkout);
+            if (context.read<CartCubit>().cart.cartItems.isNotEmpty) {
+              Navigator.pushNamed(context, AppRouter.checkout,
+                  arguments: context.read<CartCubit>().cart);
             } else {
               showCustomToast(
                 message: 'لا يوجد منتجات',
