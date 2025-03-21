@@ -1,15 +1,23 @@
 import 'package:ecommerce/core/constants/constants.dart';
+import 'package:ecommerce/core/helper/show_custom_toast.dart';
 import 'package:ecommerce/core/widgets/custom_button.dart';
+import 'package:ecommerce/features/checkout/domin/entites/order_entity.dart';
 import 'package:ecommerce/features/checkout/presentation/views/widgets/checkout_steps.dart';
 import 'package:ecommerce/features/checkout/presentation/views/widgets/checkout_steps_page_view.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class CheckoutViewBody extends StatelessWidget {
-  const CheckoutViewBody({super.key, required this.pageController, required this.currentIndex});
+  const CheckoutViewBody({
+    super.key,
+    required this.pageController,
+    required this.currentIndex,
+  });
   final PageController pageController;
   final int currentIndex;
   @override
   Widget build(BuildContext context) {
+    var orderEntity = context.watch<OrderEntity>();
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
       child: Column(
@@ -25,11 +33,18 @@ class CheckoutViewBody extends StatelessWidget {
           SafeArea(
             child: CustomButton(
               onPressed: () {
-                pageController.animateToPage(
-                  currentIndex + 1,
-                  duration: const Duration(milliseconds: 300),
-                  curve: Curves.bounceIn,
-                );
+                if (orderEntity.payWithCash != null) {
+                  pageController.animateToPage(
+                    currentIndex + 1,
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.bounceIn,
+                  );
+                } else {
+                  showCustomToast(
+                    message: 'يرجي تحديد طريقه الدفع',
+                    type: ToastType.warning,
+                  );
+                }
               },
               text: getNextButtonText(currentIndex),
             ),
