@@ -16,6 +16,11 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
   @override
   void initState() {
     pageController = PageController();
+    pageController.addListener(() {
+      setState(() {
+        currentIndex = pageController.page!.toInt();
+      });
+    });
     super.initState();
   }
 
@@ -25,6 +30,7 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
     super.dispose();
   }
 
+  int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -32,24 +38,41 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
       child: Column(
         children: [
           SizedBox(height: 20),
-          CheckoutSteps(),
+          CheckoutSteps(
+            currentIndex: currentIndex,
+            pageController: pageController,
+          ),
           Expanded(
             child: CheckoutStepsPageView(pageController: pageController),
           ),
           SafeArea(
             child: CustomButton(
               onPressed: () {
-                pageController.nextPage(
-                  duration: Duration(milliseconds: 300),
-                  curve: Curves.easeIn,
+                pageController.animateToPage(
+                  currentIndex + 1,
+                  duration: const Duration(milliseconds: 300),
+                  curve: Curves.bounceIn,
                 );
               },
-              text: 'التالي',
+              text: getNextButtonText(currentIndex),
             ),
           ),
           SizedBox(height: 32),
         ],
       ),
     );
+  }
+
+  String getNextButtonText(int currentIndex) {
+    switch (currentIndex) {
+      case 0:
+        return 'التالي';
+      case 1:
+        return 'التالي';
+      case 2:
+        return 'تأكيد الطلب';
+      default:
+        return 'التالي';
+    }
   }
 }

@@ -13,6 +13,7 @@ class PaymentItem extends StatelessWidget {
       spacing: 8,
       children: [Text(title, style: TextStyles.bold13),
       Container(
+        padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 10),
         decoration: AppDecorations.greyBoxDecoration,
         child: child,
       )

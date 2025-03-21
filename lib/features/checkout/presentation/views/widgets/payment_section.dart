@@ -1,5 +1,5 @@
-import 'package:ecommerce/core/utils/app_decorations.dart';
 import 'package:ecommerce/core/utils/app_text_styles.dart';
+import 'package:ecommerce/features/checkout/presentation/views/widgets/order_summary_payment_widget.dart';
 import 'package:ecommerce/features/checkout/presentation/views/widgets/payment_item.dart';
 import 'package:flutter/material.dart';
 
@@ -10,28 +10,39 @@ class PaymentSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        const SizedBox(height: 24),
+        OrderSummaryPaymentWidget(),
+        const SizedBox(height: 16),
         PaymentItem(
-          title: 'ملخص الطلب :',
+          title: 'عنوان التوصيل',
           child: Column(
             spacing: 9,
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('المجموع الفرعي :', style: TextStyles.bold13),
-                  Text('200 جنية', style: TextStyles.bold13),
+                  Row(
+                    spacing: 8,
+                    children: [
+                      const Icon(Icons.location_on_outlined, size: 24),
+                      Text(
+                        'شارع النيل، مبنى رقم ١٢٣',
+                        style: TextStyles.bold13,
+                      ),
+                    ],
+                  ),
+                  Row(
+                    spacing: 4,
+                    children: [
+                      const Icon(Icons.edit, size: 16),
+                      Text('تعديل', style: TextStyles.bold13),
+                    ],
+                  ),
                 ],
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-               Text('التوصيل  :', style: TextStyles.semiBold13.copyWith(color: const Color(0xFF4E5556))),
-               Text('30 جنية', style: TextStyles.semiBold13.copyWith(color: const Color(0xFF4E5556))),
-            ]),
             ],
           ),
         ),
-        PaymentItem(title: 'يرجي تأكيد  طلبك'),
       ],
     );
   }
