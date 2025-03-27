@@ -3,12 +3,11 @@ import 'package:ecommerce/features/home/domin/entites/cart_entity.dart';
 
 class OrderEntity {
   final CartEntity cartEntity;
-   bool? payWithCash;
-  final ShippingAddressEntity? shippingAddress;
+  bool? payWithCash;
+  final ShippingAddressEntity? shippingAddress = ShippingAddressEntity();
 
   OrderEntity({
     required this.cartEntity,
-     this.payWithCash,
-     this.shippingAddress,
+    this.payWithCash,
   });
 }

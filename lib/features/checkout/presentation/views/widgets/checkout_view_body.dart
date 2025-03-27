@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:ecommerce/core/constants/constants.dart';
 import 'package:ecommerce/core/helper/show_custom_toast.dart';
 import 'package:ecommerce/core/widgets/custom_button.dart';
@@ -17,7 +19,6 @@ class CheckoutViewBody extends StatelessWidget {
   final int currentIndex;
   @override
   Widget build(BuildContext context) {
-    var orderEntity = context.watch<OrderEntity>();
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
       child: Column(
@@ -33,7 +34,8 @@ class CheckoutViewBody extends StatelessWidget {
           SafeArea(
             child: CustomButton(
               onPressed: () {
-                if (orderEntity.payWithCash != null) {
+                log(context.read<OrderEntity>().payWithCash.toString());
+                if (context.read<OrderEntity>().payWithCash != null) {
                   pageController.animateToPage(
                     currentIndex + 1,
                     duration: const Duration(milliseconds: 300),

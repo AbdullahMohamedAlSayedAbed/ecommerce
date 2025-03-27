@@ -5,7 +5,6 @@ import 'package:ecommerce/features/checkout/presentation/views/widgets/checkout_
 import 'package:ecommerce/features/home/domin/entites/cart_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 class CheckoutView extends StatefulWidget {
   const CheckoutView({super.key, required this.cartEntity});
   final CartEntity cartEntity;
@@ -16,15 +15,18 @@ class CheckoutView extends StatefulWidget {
 
 class _CheckoutViewState extends State<CheckoutView> {
   late PageController pageController;
+  late OrderEntity orderEntity; // تعريف OrderEntity كمتغير في الـ State
+
   @override
   void initState() {
+    super.initState();
+    orderEntity = OrderEntity(cartEntity: widget.cartEntity); // إنشاء OrderEntity مرة واحدة في initState
     pageController = PageController();
     pageController.addListener(() {
       setState(() {
         currentIndex = pageController.page!.toInt();
       });
     });
-    super.initState();
   }
 
   @override
@@ -34,6 +36,7 @@ class _CheckoutViewState extends State<CheckoutView> {
   }
 
   int currentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,7 +46,7 @@ class _CheckoutViewState extends State<CheckoutView> {
         showNotification: false,
       ),
       body: Provider.value(
-        value: OrderEntity(cartEntity: widget.cartEntity),
+        value: orderEntity, // استخدام الكائن الثابت بدلاً من إنشاء واحد جديد
         child: CheckoutViewBody(
           currentIndex: currentIndex,
           pageController: pageController,
