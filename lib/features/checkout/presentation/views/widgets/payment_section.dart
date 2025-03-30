@@ -1,7 +1,9 @@
 import 'package:ecommerce/core/utils/app_text_styles.dart';
+import 'package:ecommerce/features/checkout/domin/entites/order_entity.dart' show OrderEntity;
 import 'package:ecommerce/features/checkout/presentation/views/widgets/order_summary_payment_widget.dart';
 import 'package:ecommerce/features/checkout/presentation/views/widgets/payment_item.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class PaymentSection extends StatelessWidget {
   const PaymentSection({super.key});
@@ -26,7 +28,7 @@ class PaymentSection extends StatelessWidget {
                     children: [
                       const Icon(Icons.location_on_outlined, size: 24),
                       Text(
-                        'شارع النيل، مبنى رقم ١٢٣',
+                        context.read<OrderEntity>().shippingAddress.toString(),
                         style: TextStyles.bold13,
                       ),
                     ],

@@ -16,7 +16,7 @@ class CheckoutView extends StatefulWidget {
 class _CheckoutViewState extends State<CheckoutView> {
   late PageController pageController;
   late OrderEntity orderEntity; // تعريف OrderEntity كمتغير في الـ State
-
+  
   @override
   void initState() {
     super.initState();
@@ -46,7 +46,7 @@ class _CheckoutViewState extends State<CheckoutView> {
         showNotification: false,
       ),
       body: Provider.value(
-        value: orderEntity, // استخدام الكائن الثابت بدلاً من إنشاء واحد جديد
+        value: orderEntity,
         child: CheckoutViewBody(
           currentIndex: currentIndex,
           pageController: pageController,

@@ -1,11 +1,12 @@
 import 'package:ecommerce/core/utils/app_text_styles.dart';
+import 'package:ecommerce/features/checkout/domin/entites/order_entity.dart';
 import 'package:ecommerce/features/checkout/presentation/views/widgets/payment_item.dart';
+import 'package:ecommerce/features/home/presentation/cubits/cart_cubit/cart_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class OrderSummaryPaymentWidget extends StatelessWidget {
-  const OrderSummaryPaymentWidget({
-    super.key,
-  });
+  const OrderSummaryPaymentWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,10 @@ class OrderSummaryPaymentWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text('المجموع الفرعي :', style: TextStyles.bold13),
-              Text('200 جنية', style: TextStyles.bold13),
+              Text(
+                '${context.read<OrderEntity>().cartEntity.calculateTotalPriceCart} جنية',
+                style: TextStyles.bold13,
+              ),
             ],
           ),
           Row(
@@ -44,7 +48,7 @@ class OrderSummaryPaymentWidget extends StatelessWidget {
             children: [
               Text('الكلي', style: TextStyles.bold16),
               Text(
-                '180 جنيه',
+                '${context.read<OrderEntity>().cartEntity.calculateTotalPriceCart + 30} جنيه',
                 style: TextStyles.bold16.copyWith(
                   color: const Color(0xFF0C0D0D),
                 ),
