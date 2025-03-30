@@ -2,10 +2,10 @@ import 'dart:developer';
 
 import 'package:ecommerce/core/constants/constants.dart';
 import 'package:ecommerce/core/helper/show_custom_toast.dart';
+import 'package:ecommerce/core/utils/app_keys.dart';
 import 'package:ecommerce/core/widgets/custom_button.dart';
 import 'package:ecommerce/features/checkout/domin/entites/order_entity.dart';
 import 'package:ecommerce/features/checkout/domin/entites/paypal_payment_entity/paypal_payment_entity.dart';
-import 'package:ecommerce/features/checkout/presentation/cubits/cubit/add_order_cubit.dart';
 import 'package:ecommerce/features/checkout/presentation/views/widgets/checkout_steps.dart';
 import 'package:ecommerce/features/checkout/presentation/views/widgets/checkout_steps_page_view.dart';
 import 'package:flutter/material.dart';
@@ -108,21 +108,27 @@ class CheckoutViewBody extends StatelessWidget {
         builder:
             (BuildContext context) => PaypalCheckoutView(
               sandboxMode: true,
-              clientId: "",
-              secretKey: "",
+              clientId: AppKeys.clientID,
+              secretKey: AppKeys.clientSecret,
               transactions:  [
               paypalPaymentEntity.toJson(),
               ],
               note: "Contact us for any questions on your order.",
               onSuccess: (Map params) async {
-                print("onSuccess: $params");
+                log("onSuccess: $params");
+                Navigator.pop(context);
+                showCustomToast(
+                  message: 'تم الدفع بنجاح',
+                  type: ToastType.success,
+                );
               },
               onError: (error) {
-                print("onError: $error");
+                log("onError: $error");
                 Navigator.pop(context);
+                showCustomToast(message: 'حدث خطاء', type: ToastType.error);
               },
               onCancel: () {
-                print('cancelled:');
+                log('cancelled:');
               },
             ),
       ),

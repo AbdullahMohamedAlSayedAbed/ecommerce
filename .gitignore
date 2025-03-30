@@ -11,7 +11,7 @@
 .svn/
 .swiftpm/
 migrate_working_dir/
-
+lib/core/utils/app_keys.dart
 # IntelliJ related
 *.iml
 *.ipr
