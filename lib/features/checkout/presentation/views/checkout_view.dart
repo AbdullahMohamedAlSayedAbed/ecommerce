@@ -1,3 +1,4 @@
+import 'package:ecommerce/core/helper/get_user.dart';
 import 'package:ecommerce/core/widgets/custom_app_bar.dart';
 import 'package:ecommerce/features/checkout/domin/entites/order_entity.dart';
 import 'package:ecommerce/features/checkout/presentation/views/widgets/checkout_steps.dart';
@@ -5,6 +6,7 @@ import 'package:ecommerce/features/checkout/presentation/views/widgets/checkout_
 import 'package:ecommerce/features/home/domin/entites/cart_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 class CheckoutView extends StatefulWidget {
   const CheckoutView({super.key, required this.cartEntity});
   final CartEntity cartEntity;
@@ -16,11 +18,14 @@ class CheckoutView extends StatefulWidget {
 class _CheckoutViewState extends State<CheckoutView> {
   late PageController pageController;
   late OrderEntity orderEntity; // تعريف OrderEntity كمتغير في الـ State
-  
+
   @override
   void initState() {
     super.initState();
-    orderEntity = OrderEntity(cartEntity: widget.cartEntity); // إنشاء OrderEntity مرة واحدة في initState
+    orderEntity = OrderEntity(
+      uID: getUser().id,
+      cartEntity: widget.cartEntity,
+    ); // إنشاء OrderEntity مرة واحدة في initState
     pageController = PageController();
     pageController.addListener(() {
       setState(() {

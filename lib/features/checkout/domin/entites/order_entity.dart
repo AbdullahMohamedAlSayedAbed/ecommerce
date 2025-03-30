@@ -3,6 +3,7 @@ import 'package:ecommerce/features/home/domin/entites/cart_entity.dart';
 import 'package:flutter/material.dart';
 
 class OrderEntity {
+  final String uID;
   final CartEntity cartEntity;
   bool? payWithCash;
   ShippingAddressEntity? shippingAddress = ShippingAddressEntity();
@@ -10,5 +11,5 @@ class OrderEntity {
   final ValueNotifier<AutovalidateMode> autoValidateMode =
       ValueNotifier<AutovalidateMode>(AutovalidateMode.disabled);
 
-  OrderEntity({required this.cartEntity, this.payWithCash});
+  OrderEntity( {required this.uID,required this.cartEntity, this.payWithCash});
 }
