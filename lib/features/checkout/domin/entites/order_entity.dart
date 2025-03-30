@@ -7,7 +7,7 @@ class OrderEntity {
   bool? payWithCash;
   ShippingAddressEntity? shippingAddress = ShippingAddressEntity();
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-   final ValueNotifier<AutovalidateMode> autoValidateMode =
+  final ValueNotifier<AutovalidateMode> autoValidateMode =
       ValueNotifier<AutovalidateMode>(AutovalidateMode.disabled);
 
   OrderEntity({required this.cartEntity, this.payWithCash});

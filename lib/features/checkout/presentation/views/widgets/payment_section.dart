@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class PaymentSection extends StatelessWidget {
-  const PaymentSection({super.key});
-
+  const PaymentSection({super.key, required this.pageController});
+final PageController pageController;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -33,12 +33,21 @@ class PaymentSection extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Row(
-                    spacing: 4,
-                    children: [
-                      const Icon(Icons.edit, size: 16),
-                      Text('تعديل', style: TextStyles.bold13),
-                    ],
+                  InkWell(
+                    onTap: () {
+                      pageController.animateToPage(
+                        1,
+                        duration: const Duration(milliseconds: 300),
+                        curve: Curves.bounceIn,
+                      );
+                    },
+                    child: Row(
+                      spacing: 4,
+                      children: [
+                        const Icon(Icons.edit, size: 16),
+                        Text('تعديل', style: TextStyles.bold13),
+                      ],
+                    ),
                   ),
                 ],
               ),

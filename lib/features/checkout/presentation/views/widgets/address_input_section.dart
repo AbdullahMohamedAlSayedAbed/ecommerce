@@ -12,6 +12,7 @@ class AddressInputSection extends StatelessWidget {
     return SingleChildScrollView(
       child: ValueListenableBuilder<AutovalidateMode>(
         valueListenable: context.read<OrderEntity>().autoValidateMode,
+
         builder: (context, mode, child) {
           return Form(
             autovalidateMode: mode,
