@@ -3,7 +3,6 @@ import 'package:ecommerce/core/utils/app_text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:svg_flutter/svg.dart';
 
-
 class SearchTextField extends StatelessWidget {
   const SearchTextField({super.key});
 
@@ -17,7 +16,7 @@ class SearchTextField extends StatelessWidget {
             blurRadius: 9,
             offset: Offset(0, 2),
             spreadRadius: 0,
-          )
+          ),
         ],
       ),
       child: TextField(
@@ -25,17 +24,11 @@ class SearchTextField extends StatelessWidget {
         decoration: InputDecoration(
           prefixIcon: SizedBox(
             width: 20,
-            child: Center(
-              child: SvgPicture.asset(Assets.imagesSearchIcon),
-            ),
+            child: Center(child: SvgPicture.asset(Assets.imagesSearchIcon)),
           ),
           suffixIcon: SizedBox(
             width: 20,
-            child: Center(
-              child: SvgPicture.asset(
-                Assets.imagesFilter,
-              ),
-            ),
+            child: Center(child: SvgPicture.asset(Assets.imagesFilter)),
           ),
           hintStyle: TextStyles.regular13.copyWith(
             color: const Color(0xFF949D9E),
@@ -54,10 +47,7 @@ class SearchTextField extends StatelessWidget {
   OutlineInputBorder buildBorder() {
     return OutlineInputBorder(
       borderRadius: BorderRadius.circular(4),
-      borderSide: const BorderSide(
-        width: 1,
-        color: Colors.white,
-      ),
+      borderSide: const BorderSide(width: 1, color: Colors.white),
     );
   }
 }

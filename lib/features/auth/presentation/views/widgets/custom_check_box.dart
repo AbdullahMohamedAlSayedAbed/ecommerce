@@ -5,9 +5,8 @@ import 'package:svg_flutter/svg.dart';
 import '../../../../../core/utils/app_colors.dart';
 
 class CustomCheckBox extends StatefulWidget {
-  const CustomCheckBox(
-      {super.key, required this.onChecked});
-  
+  const CustomCheckBox({super.key, required this.onChecked});
+
   final ValueChanged<bool> onChecked;
 
   @override
@@ -15,14 +14,13 @@ class CustomCheckBox extends StatefulWidget {
 }
 
 class _CustomCheckBoxState extends State<CustomCheckBox> {
-   bool isChecked = false;
+  bool isChecked = false;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
         setState(() {
-        isChecked = !isChecked;
-          
+          isChecked = !isChecked;
         });
         widget.onChecked(isChecked);
       },
@@ -35,19 +33,18 @@ class _CustomCheckBoxState extends State<CustomCheckBox> {
           shape: RoundedRectangleBorder(
             side: BorderSide(
               width: 1.50,
-              color:isChecked ? Colors.transparent : const Color(0xFFDCDEDE),
+              color: isChecked ? Colors.transparent : const Color(0xFFDCDEDE),
             ),
             borderRadius: BorderRadius.circular(8),
           ),
         ),
-        child:isChecked
-            ? Padding(
-                padding: const EdgeInsets.all(2),
-                child: SvgPicture.asset(
-                  Assets.imagesCheck,
-                ),
-              )
-            : const SizedBox(),
+        child:
+            isChecked
+                ? Padding(
+                  padding: const EdgeInsets.all(2),
+                  child: SvgPicture.asset(Assets.imagesCheck),
+                )
+                : const SizedBox(),
       ),
     );
   }

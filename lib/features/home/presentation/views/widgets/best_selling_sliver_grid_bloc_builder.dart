@@ -11,13 +11,10 @@ class BestSellingSliverGridBlocBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     return BlocBuilder<ProductsCubit, ProductsState>(
       builder: (context, state) {
         if (state is ProductsSuccess) {
-          return BestSellingSliverGrid(
-            products: state.products,
-          );
+          return BestSellingSliverGrid(products: state.products);
         } else if (state is ProductsFailure) {
           return SliverToBoxAdapter(
             child: CustomErrorWidget(text: state.errMessage),
@@ -25,9 +22,8 @@ class BestSellingSliverGridBlocBuilder extends StatelessWidget {
         } else {
           return Skeletonizer.sliver(
             enabled: true,
-            child:  BestSellingSliverGrid(
-              products:getDummyProducts() ,
-            ));
+            child: BestSellingSliverGrid(products: getDummyProducts()),
+          );
         }
       },
     );

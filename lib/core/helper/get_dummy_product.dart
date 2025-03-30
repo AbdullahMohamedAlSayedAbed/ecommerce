@@ -15,6 +15,7 @@ ProductEntity getDummyProduct() {
     isOrganic: true,
   );
 }
+
 List<ProductEntity> getDummyProducts() {
   return List.generate(10, (index) => getDummyProduct());
 }

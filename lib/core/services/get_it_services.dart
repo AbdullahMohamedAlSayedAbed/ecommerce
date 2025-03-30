@@ -1,3 +1,5 @@
+import 'package:ecommerce/core/repos/order_repo/order_repo.dart';
+import 'package:ecommerce/core/repos/order_repo/order_repo_impl.dart';
 import 'package:ecommerce/core/repos/product_repo/product_repo.dart';
 import 'package:ecommerce/core/repos/product_repo/product_repo_impl.dart';
 import 'package:ecommerce/core/services/auth_services.dart';
@@ -21,5 +23,8 @@ void setupServiceLocator() {
       databaseService: getIt<DatabaseService>(),
       authServices: getIt<AuthServices>(),
     ),
+  );
+  getIt.registerSingleton<OrderRepo>(
+    OrderRepoImpl(firestoreService: getIt<DatabaseService>()),
   );
 }

@@ -15,26 +15,24 @@ class NavigationBarItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedSwitcher(
-      duration: const Duration(milliseconds: 300), 
+      duration: const Duration(milliseconds: 300),
       transitionBuilder: (child, animation) {
         return FadeTransition(
           opacity: animation,
-          child: ScaleTransition( 
-            scale: animation,
-            child: child,
-          ),
+          child: ScaleTransition(scale: animation, child: child),
         );
       },
-      child: isActive
-          ? ActiveItem(
-              key: const ValueKey('active'), 
-              icon: bottomNavigationEntity.activeImage,
-              text: bottomNavigationEntity.title,
-            )
-          : InActiveItem(
-              key: const ValueKey('inactive'), 
-              icon: bottomNavigationEntity.inActiveImage,
-            ),
+      child:
+          isActive
+              ? ActiveItem(
+                key: const ValueKey('active'),
+                icon: bottomNavigationEntity.activeImage,
+                text: bottomNavigationEntity.title,
+              )
+              : InActiveItem(
+                key: const ValueKey('inactive'),
+                icon: bottomNavigationEntity.inActiveImage,
+              ),
     );
   }
 }

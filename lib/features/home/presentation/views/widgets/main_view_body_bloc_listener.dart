@@ -18,7 +18,7 @@ class MainViewBodyBlocListener extends StatelessWidget {
             message: 'تم اضافة المنتج للسلة',
             type: ToastType.success,
           );
-        }else if (state is CartItemRemoved) {
+        } else if (state is CartItemRemoved) {
           showCustomToast(
             message: 'تم حذف المنتج من السلة',
             type: ToastType.success,

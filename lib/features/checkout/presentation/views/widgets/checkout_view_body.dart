@@ -4,9 +4,12 @@ import 'package:ecommerce/core/constants/constants.dart';
 import 'package:ecommerce/core/helper/show_custom_toast.dart';
 import 'package:ecommerce/core/widgets/custom_button.dart';
 import 'package:ecommerce/features/checkout/domin/entites/order_entity.dart';
+import 'package:ecommerce/features/checkout/domin/entites/paypal_payment_entity/paypal_payment_entity.dart';
+import 'package:ecommerce/features/checkout/presentation/cubits/cubit/add_order_cubit.dart';
 import 'package:ecommerce/features/checkout/presentation/views/widgets/checkout_steps.dart';
 import 'package:ecommerce/features/checkout/presentation/views/widgets/checkout_steps_page_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_paypal_payment/flutter_paypal_payment.dart';
 import 'package:provider/provider.dart';
 
 class CheckoutViewBody extends StatelessWidget {
@@ -39,6 +42,8 @@ class CheckoutViewBody extends StatelessWidget {
                   _handleShippingSectionValidation(context);
                 } else if (currentIndex == 1) {
                   _handleAddressingValidation(context);
+                } else {
+                  _processPayment(context);
                 }
               },
               text: getNextButtonText(currentIndex),
@@ -90,5 +95,37 @@ class CheckoutViewBody extends StatelessWidget {
       default:
         return 'التالي';
     }
+  }
+
+  void _processPayment(BuildContext context) {
+    var orderEntity = context.read<OrderEntity>();
+    PaypalPaymentEntity paypalPaymentEntity = PaypalPaymentEntity.fromEntity(
+      orderEntity,
+    );
+
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder:
+            (BuildContext context) => PaypalCheckoutView(
+              sandboxMode: true,
+              clientId: "",
+              secretKey: "",
+              transactions:  [
+              paypalPaymentEntity.toJson(),
+              ],
+              note: "Contact us for any questions on your order.",
+              onSuccess: (Map params) async {
+                print("onSuccess: $params");
+              },
+              onError: (error) {
+                print("onError: $error");
+                Navigator.pop(context);
+              },
+              onCancel: () {
+                print('cancelled:');
+              },
+            ),
+      ),
+    );
   }
 }

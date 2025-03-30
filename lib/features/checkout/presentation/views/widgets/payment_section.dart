@@ -1,5 +1,6 @@
 import 'package:ecommerce/core/utils/app_text_styles.dart';
-import 'package:ecommerce/features/checkout/domin/entites/order_entity.dart' show OrderEntity;
+import 'package:ecommerce/features/checkout/domin/entites/order_entity.dart'
+    show OrderEntity;
 import 'package:ecommerce/features/checkout/presentation/views/widgets/order_summary_payment_widget.dart';
 import 'package:ecommerce/features/checkout/presentation/views/widgets/payment_item.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +8,7 @@ import 'package:provider/provider.dart';
 
 class PaymentSection extends StatelessWidget {
   const PaymentSection({super.key, required this.pageController});
-final PageController pageController;
+  final PageController pageController;
   @override
   Widget build(BuildContext context) {
     return Column(

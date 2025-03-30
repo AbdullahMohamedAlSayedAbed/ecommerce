@@ -28,17 +28,16 @@ class OrderModel {
       paymentMethod: json['paymentMethod'],
     );
   }
-  factory OrderModel.fromEntity(
-    OrderEntity order
-  ) {
+  factory OrderModel.fromEntity(OrderEntity order) {
     return OrderModel(
       totalPrice: order.cartEntity.calculateTotalPriceCart,
       uID: order.uID,
       shippingAddress: ShippingAddressModel.fromEntity(order.shippingAddress!),
-      orderProducts: order.cartEntity.cartItems
-          .map((e) => OrderProductModel.fromEntity(cartItemEntity: e))
-          .toList(),
-      paymentMethod: order.payWithCash!?'Cash':'Paypal',
+      orderProducts:
+          order.cartEntity.cartItems
+              .map((e) => OrderProductModel.fromEntity(cartItemEntity: e))
+              .toList(),
+      paymentMethod: order.payWithCash! ? 'Cash' : 'Paypal',
     );
   }
 

@@ -14,11 +14,14 @@ class SignupViewBodyBlocConsumer extends StatelessWidget {
     return BlocConsumer<SignupCubit, SignupState>(
       listener: (context, state) {
         if (state is SignupSuccess) {
-          showCustomToast(message: "لقد تم انشاء الحساب بنجاح",type:  ToastType.success);
+          showCustomToast(
+            message: "لقد تم انشاء الحساب بنجاح",
+            type: ToastType.success,
+          );
           Navigator.pop(context);
         }
         if (state is SignupFailure) {
-          showCustomToast(message:  state.message,type:  ToastType.error);
+          showCustomToast(message: state.message, type: ToastType.error);
         }
       },
       builder: (context, state) {

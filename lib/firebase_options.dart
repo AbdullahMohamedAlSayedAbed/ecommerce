@@ -70,8 +70,10 @@ class DefaultFirebaseOptions {
     messagingSenderId: '420214891758',
     projectId: 'fruits-hup-ea3fb',
     storageBucket: 'fruits-hup-ea3fb.appspot.com',
-    androidClientId: '420214891758-tm4h3afvac4ac4rkvdqhucubku91d703.apps.googleusercontent.com',
-    iosClientId: '420214891758-2hmvg1iddmq5lkgu3j6ah062aj7lik2c.apps.googleusercontent.com',
+    androidClientId:
+        '420214891758-tm4h3afvac4ac4rkvdqhucubku91d703.apps.googleusercontent.com',
+    iosClientId:
+        '420214891758-2hmvg1iddmq5lkgu3j6ah062aj7lik2c.apps.googleusercontent.com',
     iosBundleId: 'com.example.ecommerce',
   );
 }

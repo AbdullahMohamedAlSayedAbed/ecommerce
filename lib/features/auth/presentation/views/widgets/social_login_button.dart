@@ -5,11 +5,12 @@ import 'package:flutter/widgets.dart';
 import 'package:svg_flutter/svg.dart';
 
 class SocialLoginButton extends StatelessWidget {
-  const SocialLoginButton(
-      {super.key,
-      required this.image,
-      required this.title,
-      required this.onPressed});
+  const SocialLoginButton({
+    super.key,
+    required this.image,
+    required this.title,
+    required this.onPressed,
+  });
 
   final String image;
   final String title;

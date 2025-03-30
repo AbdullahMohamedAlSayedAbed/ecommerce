@@ -6,5 +6,4 @@ class CustomException implements Exception {
   String toString() {
     return " $message";
   }
-  
 }

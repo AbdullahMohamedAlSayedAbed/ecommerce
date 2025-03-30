@@ -28,6 +28,7 @@ final class SigninFailure extends SigninState {
   @override
   List<Object> get props => [message];
 }
+
 final class SigninGoogleSuccess extends SigninState {
   final UserEntity user;
 
@@ -45,4 +46,3 @@ final class SigninFacebookSuccess extends SigninState {
   @override
   List<Object> get props => [user];
 }
-

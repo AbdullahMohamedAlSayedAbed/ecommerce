@@ -63,7 +63,10 @@ class AuthRepoImpl extends AuthRepo {
     User? user;
     try {
       user = await authServices.signInWithFacebook();
-      var userEntity = UserModel.fromFirebaseUser(user!, name: user.displayName);
+      var userEntity = UserModel.fromFirebaseUser(
+        user!,
+        name: user.displayName,
+      );
       bool isUserExist = await databaseService.checkIfDataExists(
         path: BackendEndpoint.getUsersData,
         documentId: user.uid,
@@ -90,7 +93,10 @@ class AuthRepoImpl extends AuthRepo {
     User? user;
     try {
       user = await authServices.signInWithGoogle();
-      var userEntity = UserModel.fromFirebaseUser(user!, name: user.displayName);
+      var userEntity = UserModel.fromFirebaseUser(
+        user!,
+        name: user.displayName,
+      );
       bool isUserExist = await databaseService.checkIfDataExists(
         path: BackendEndpoint.getUsersData,
         documentId: user.uid,
@@ -151,14 +157,14 @@ class AuthRepoImpl extends AuthRepo {
 
   @override
   Future addUserData({required UserEntity user, required String uid}) async {
-
     await databaseService.addDate(
       path: BackendEndpoint.addUserData,
       data: UserModel.fromEntity(user).toJson(),
       documentId: uid,
     );
   }
-    @override
+
+  @override
   Future saveUserData({required UserEntity user}) async {
     var jsonData = jsonEncode(UserModel.fromEntity(user).toJson());
     await Prefs.setString(kUserData, jsonData);

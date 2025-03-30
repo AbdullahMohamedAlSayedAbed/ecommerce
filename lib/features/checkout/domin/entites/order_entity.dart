@@ -11,5 +11,22 @@ class OrderEntity {
   final ValueNotifier<AutovalidateMode> autoValidateMode =
       ValueNotifier<AutovalidateMode>(AutovalidateMode.disabled);
 
-  OrderEntity( {required this.uID,required this.cartEntity, this.payWithCash});
+  OrderEntity({required this.uID, required this.cartEntity, this.payWithCash});
+
+  double get calculateShippingCost {
+    if (!payWithCash!) {
+      return 0;
+    } else {
+      return 30;
+    }
+  }
+
+  double get calculateShippingDiscount {
+    return 0;
+  }
+  double get calculateTotalPriceAfterDiscountAndShipping {
+    return cartEntity.calculateTotalPriceCart +
+        calculateShippingCost -
+        calculateShippingDiscount;
+  }
 }

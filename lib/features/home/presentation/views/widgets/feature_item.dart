@@ -9,7 +9,7 @@ class FeatureItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var width = MediaQuery.of(context).size.width -32;
+    var width = MediaQuery.of(context).size.width - 32;
     return Container(
       width: width,
       decoration: ShapeDecoration(
@@ -24,7 +24,7 @@ class FeatureItem extends StatelessWidget {
               bottom: 0,
               top: 0,
               left: 0,
-              child: Image.asset(Assets.imagesWatermelon,fit: BoxFit.fill,),
+              child: Image.asset(Assets.imagesWatermelon, fit: BoxFit.fill),
             ),
             Container(
               width: width * .5,

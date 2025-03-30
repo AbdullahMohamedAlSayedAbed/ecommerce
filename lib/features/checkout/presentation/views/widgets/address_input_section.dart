@@ -37,7 +37,8 @@ class AddressInputSection extends StatelessWidget {
                 ),
                 CustomTextFormField(
                   onSaved: (value) {
-                    context.read<OrderEntity>().shippingAddress?.address = value;
+                    context.read<OrderEntity>().shippingAddress?.address =
+                        value;
                   },
                   hintText: 'العنوان',
                   textInputType: TextInputType.text,
@@ -51,8 +52,10 @@ class AddressInputSection extends StatelessWidget {
                 ),
                 CustomTextFormField(
                   onSaved: (value) {
-                    context.read<OrderEntity>().shippingAddress?.addressDetails =
-                        value;
+                    context
+                        .read<OrderEntity>()
+                        .shippingAddress
+                        ?.addressDetails = value;
                   },
                   hintText: 'رقم الطابق , رقم الشقه ..',
                   textInputType: TextInputType.text,
@@ -67,7 +70,7 @@ class AddressInputSection extends StatelessWidget {
               ],
             ),
           );
-        }
+        },
       ),
     );
   }

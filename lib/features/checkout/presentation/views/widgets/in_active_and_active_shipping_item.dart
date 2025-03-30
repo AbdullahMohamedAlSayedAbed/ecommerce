@@ -2,10 +2,7 @@ import 'package:ecommerce/core/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class InActiveAndActiveShippingItem extends StatelessWidget {
-  const InActiveAndActiveShippingItem({
-    super.key,
-    required this.isSelected,
-  });
+  const InActiveAndActiveShippingItem({super.key, required this.isSelected});
 
   final bool isSelected;
 
@@ -20,10 +17,7 @@ class InActiveAndActiveShippingItem extends StatelessWidget {
           side:
               isSelected
                   ? BorderSide(width: 4, color: Colors.white)
-                  : BorderSide(
-                    width: 1,
-                    color: const Color(0xFF949D9E),
-                  ),
+                  : BorderSide(width: 1, color: const Color(0xFF949D9E)),
         ),
       ),
     );

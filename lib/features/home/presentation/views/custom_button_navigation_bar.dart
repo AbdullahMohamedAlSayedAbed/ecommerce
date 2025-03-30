@@ -40,10 +40,11 @@ class _CustomButtonNavigationBarState extends State<CustomButtonNavigationBar> {
             (index) => Expanded(
               flex: index == currentIndex ? 3 : 2,
               child: InkWell(
-                onTap: () => setState(() {
-                  currentIndex = index;
-                  widget.onChanged(index);
-                }),
+                onTap:
+                    () => setState(() {
+                      currentIndex = index;
+                      widget.onChanged(index);
+                    }),
                 child: NavigationBarItem(
                   isActive: index == currentIndex,
                   bottomNavigationEntity: bottomNavigationsBarItem[index],

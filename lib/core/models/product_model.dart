@@ -1,4 +1,3 @@
-
 import 'package:ecommerce/core/entites/product_entity.dart';
 import 'package:ecommerce/core/helper/get_avg_rating.dart';
 
@@ -20,27 +19,31 @@ class ProductModel {
   final num ratingCount = 0;
   final int unitAmount;
   final List<ReviewModel> reviews;
-  ProductModel(
-      {required this.name,
-      required this.code,
-      required this.description,
-      required this.expirationsMonths,
-      required this.numberOfCalories,
-      required this.avgRating,
-      required this.unitAmount,
-      required this.sellingCount,
-      required this.reviews,
-      required this.price,
-      required this.isOrganic,
-      required this.isFeatured,
-      this.imageUrl});
+  ProductModel({
+    required this.name,
+    required this.code,
+    required this.description,
+    required this.expirationsMonths,
+    required this.numberOfCalories,
+    required this.avgRating,
+    required this.unitAmount,
+    required this.sellingCount,
+    required this.reviews,
+    required this.price,
+    required this.isOrganic,
+    required this.isFeatured,
+    this.imageUrl,
+  });
 
   factory ProductModel.fromJson(Map<String, dynamic> json) {
     return ProductModel(
-      avgRating: getAvgRating(json['reviews'] != null
-          ? List<ReviewModel>.from(
-              json['reviews'].map((e) => ReviewModel.fromJson(e)))
-          : []),
+      avgRating: getAvgRating(
+        json['reviews'] != null
+            ? List<ReviewModel>.from(
+              json['reviews'].map((e) => ReviewModel.fromJson(e)),
+            )
+            : [],
+      ),
       name: json['name'],
       code: json['code'],
       description: json['description'],
@@ -48,10 +51,12 @@ class ProductModel {
       numberOfCalories: json['numberOfCalories'],
       unitAmount: json['unitAmount'],
       sellingCount: json['sellingCount'],
-      reviews: json['reviews'] != null
-          ? List<ReviewModel>.from(
-              json['reviews'].map((e) => ReviewModel.fromJson(e)))
-          : [],
+      reviews:
+          json['reviews'] != null
+              ? List<ReviewModel>.from(
+                json['reviews'].map((e) => ReviewModel.fromJson(e)),
+              )
+              : [],
       price: json['price'],
       isOrganic: json['isOrganic'],
       isFeatured: json['isFeatured'],
@@ -61,17 +66,18 @@ class ProductModel {
 
   ProductEntity toEntity() {
     return ProductEntity(
-        title: name,
-        code: code,
-        description: description,
-        price: price,
-        reviews: reviews.map((e) => e.toEntity()).toList(),
-        expirationsMonth: expirationsMonths,
-        numberOfCalories: numberOfCalories,
-        unitAmount: unitAmount,
-        isOrganic: isOrganic,
-        isFeatured: isFeatured,
-        imageUrl: imageUrl);
+      title: name,
+      code: code,
+      description: description,
+      price: price,
+      reviews: reviews.map((e) => e.toEntity()).toList(),
+      expirationsMonth: expirationsMonths,
+      numberOfCalories: numberOfCalories,
+      unitAmount: unitAmount,
+      isOrganic: isOrganic,
+      isFeatured: isFeatured,
+      imageUrl: imageUrl,
+    );
   }
 
   toJson() {
@@ -86,8 +92,7 @@ class ProductModel {
       'numberOfCalories': numberOfCalories,
       'unitAmount': unitAmount,
       'isOrganic': isOrganic,
-      'reviews': reviews.map((e) => e.toJson()).toList()
+      'reviews': reviews.map((e) => e.toJson()).toList(),
     };
   }
-
 }

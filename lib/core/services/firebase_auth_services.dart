@@ -134,6 +134,4 @@ class FirebaseAuthService extends AuthServices {
   bool isSignIn() {
     return _firebaseAuth.currentUser != null;
   }
-
-
 }

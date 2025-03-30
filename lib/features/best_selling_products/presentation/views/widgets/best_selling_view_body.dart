@@ -17,15 +17,12 @@ class _BestSellingViewBodyState extends State<BestSellingViewBody> {
     context.read<ProductsCubit>().getProducts();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
-      child: CustomScrollView(
-        slivers: [
-          BestSellingSliverGridBlocBuilder(),
-        ],
-      ),
+      child: CustomScrollView(slivers: [BestSellingSliverGridBlocBuilder()]),
     );
   }
 }

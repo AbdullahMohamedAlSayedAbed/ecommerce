@@ -31,9 +31,11 @@ abstract class AppRouter {
       case bestSelling:
         return MaterialPageRoute(builder: (context) => const BestSellingView());
       case checkout:
-        return MaterialPageRoute(builder: (context) =>  CheckoutView(
-          cartEntity: settings.arguments as CartEntity
-        ));
+        return MaterialPageRoute(
+          builder:
+              (context) =>
+                  CheckoutView(cartEntity: settings.arguments as CartEntity),
+        );
       default:
         return MaterialPageRoute(builder: (context) => const Scaffold());
     }

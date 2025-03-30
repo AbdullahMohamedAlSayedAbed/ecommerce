@@ -6,9 +6,7 @@ import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 
 class DontHaveAnAccountWidget extends StatelessWidget {
-  const DontHaveAnAccountWidget({
-    super.key,
-  });
+  const DontHaveAnAccountWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -28,14 +26,16 @@ class DontHaveAnAccountWidget extends StatelessWidget {
             ),
           ),
           TextSpan(
-            recognizer: TapGestureRecognizer()
-              ..onTap = () {
-                Navigator.pushNamed(context, AppRouter.signUp);
-              },
+            recognizer:
+                TapGestureRecognizer()
+                  ..onTap = () {
+                    Navigator.pushNamed(context, AppRouter.signUp);
+                  },
             text: 'قم بإنشاء حساب',
             mouseCursor: MouseCursor.uncontrolled,
-            style:
-                TextStyles.semiBold16.copyWith(color: AppColors.primaryColor),
+            style: TextStyles.semiBold16.copyWith(
+              color: AppColors.primaryColor,
+            ),
           ),
         ],
       ),

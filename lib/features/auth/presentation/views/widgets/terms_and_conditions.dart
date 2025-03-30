@@ -10,7 +10,8 @@ class TermsAndConditionsWidget extends StatefulWidget {
   final ValueChanged<bool> onChanged;
 
   @override
-  State<TermsAndConditionsWidget> createState() => _TermsAndConditionsWidgetState();
+  State<TermsAndConditionsWidget> createState() =>
+      _TermsAndConditionsWidgetState();
 }
 
 class _TermsAndConditionsWidgetState extends State<TermsAndConditionsWidget> {
@@ -26,9 +27,7 @@ class _TermsAndConditionsWidgetState extends State<TermsAndConditionsWidget> {
             widget.onChanged(value);
           },
         ),
-        const SizedBox(
-          width: 16,
-        ),
+        const SizedBox(width: 16),
         Expanded(
           child: Text.rich(
             TextSpan(
@@ -45,30 +44,25 @@ class _TermsAndConditionsWidgetState extends State<TermsAndConditionsWidget> {
                     color: AppColors.lightPrimaryColor,
                   ),
                 ),
-                const TextSpan(
-                  text: ' ',
-                  style: TextStyles.semiBold13,
-                ),
+                const TextSpan(text: ' ', style: TextStyles.semiBold13),
                 TextSpan(
                   text: 'الخاصة',
                   style: TextStyles.semiBold13.copyWith(
                     color: AppColors.lightPrimaryColor,
                   ),
                 ),
-                const TextSpan(
-                  text: ' ',
-                  style: TextStyles.semiBold13,
-                ),
+                const TextSpan(text: ' ', style: TextStyles.semiBold13),
                 TextSpan(
                   text: 'بنا',
-                  style: TextStyles.semiBold13
-                      .copyWith(color: AppColors.lightPrimaryColor),
+                  style: TextStyles.semiBold13.copyWith(
+                    color: AppColors.lightPrimaryColor,
+                  ),
                 ),
               ],
             ),
             textAlign: TextAlign.right,
           ),
-        )
+        ),
       ],
     );
   }

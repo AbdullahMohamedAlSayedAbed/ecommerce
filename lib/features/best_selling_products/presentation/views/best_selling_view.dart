@@ -14,9 +14,7 @@ class BestSellingView extends StatelessWidget {
     return Scaffold(
       appBar: buildAppBar(),
       body: BlocProvider(
-        create:
-            (context) =>
-                ProductsCubit(getIt.get<ProductsRepo>()),
+        create: (context) => ProductsCubit(getIt.get<ProductsRepo>()),
         child: const BestSellingViewBody(),
       ),
     );
