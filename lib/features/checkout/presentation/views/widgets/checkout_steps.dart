@@ -8,19 +8,18 @@ class CheckoutSteps extends StatelessWidget {
   const CheckoutSteps({
     super.key,
     required this.currentIndex,
-    required this.pageController,
+    required this.pageController, required this.onStepTapped,
   });
   final int currentIndex;
   final PageController pageController;
+  final ValueChanged<int> onStepTapped;
   @override
   Widget build(BuildContext context) {
     return Row(
       children: List.generate(getSteps().length, (index) {
         return Expanded(
           child: InkWell(
-            onTap: () {
-              checkValidationCheckoutSteps(index, context);
-            },
+            onTap:() =>  onStepTapped(index),
             child: StepItem(
               text: getSteps()[index],
               index: index + 1,

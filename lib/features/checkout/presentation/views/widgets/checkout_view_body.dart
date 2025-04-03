@@ -6,6 +6,7 @@ import 'package:ecommerce/core/utils/app_keys.dart';
 import 'package:ecommerce/core/widgets/custom_button.dart';
 import 'package:ecommerce/features/checkout/domin/entites/order_entity.dart';
 import 'package:ecommerce/features/checkout/domin/entites/paypal_payment_entity/paypal_payment_entity.dart';
+import 'package:ecommerce/features/checkout/presentation/cubits/cubit/add_order_cubit.dart';
 import 'package:ecommerce/features/checkout/presentation/views/widgets/checkout_steps.dart';
 import 'package:ecommerce/features/checkout/presentation/views/widgets/checkout_steps_page_view.dart';
 import 'package:flutter/material.dart';
@@ -31,6 +32,30 @@ class CheckoutViewBody extends StatelessWidget {
           CheckoutSteps(
             currentIndex: currentIndex,
             pageController: pageController,
+            onStepTapped: (index) {
+              if (index == 0) {
+                pageController.animateToPage(
+                  index,
+                  duration: const Duration(milliseconds: 300),
+                  curve: Curves.bounceIn,
+                );
+              } else if (index == 1) {
+                if (context.read<OrderEntity>().payWithCash != null) {
+                  pageController.animateToPage(
+                    index,
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.bounceIn,
+                  );
+                } else {
+                  showCustomToast(
+                    message: 'يرجي تحديد طريقه الدفع',
+                    type: ToastType.warning,
+                  );
+                }
+              } else {
+                _handleAddressingValidation(context);
+              }
+            },
           ),
           Expanded(
             child: CheckoutStepsPageView(pageController: pageController),
@@ -99,6 +124,7 @@ class CheckoutViewBody extends StatelessWidget {
 
   void _processPayment(BuildContext context) {
     var orderEntity = context.read<OrderEntity>();
+    var addOrderCubit = context.read<AddOrderCubit>();
     PaypalPaymentEntity paypalPaymentEntity = PaypalPaymentEntity.fromEntity(
       orderEntity,
     );
@@ -110,9 +136,7 @@ class CheckoutViewBody extends StatelessWidget {
               sandboxMode: true,
               clientId: AppKeys.clientID,
               secretKey: AppKeys.clientSecret,
-              transactions:  [
-              paypalPaymentEntity.toJson(),
-              ],
+              transactions: [paypalPaymentEntity.toJson()],
               note: "Contact us for any questions on your order.",
               onSuccess: (Map params) async {
                 log("onSuccess: $params");
@@ -121,6 +145,7 @@ class CheckoutViewBody extends StatelessWidget {
                   message: 'تم الدفع بنجاح',
                   type: ToastType.success,
                 );
+                await addOrderCubit.addOrder(order: orderEntity);
               },
               onError: (error) {
                 log("onError: $error");

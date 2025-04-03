@@ -28,10 +28,7 @@ class _CheckoutViewState extends State<CheckoutView> {
   @override
   void initState() {
     super.initState();
-    orderEntity = OrderEntity(
-      uID: getUser().id,
-      cartEntity: widget.cartEntity,
-    ); // إنشاء OrderEntity مرة واحدة في initState
+    orderEntity = OrderEntity(uID: getUser().id, cartEntity: widget.cartEntity);
     pageController = PageController();
     pageController.addListener(() {
       setState(() {

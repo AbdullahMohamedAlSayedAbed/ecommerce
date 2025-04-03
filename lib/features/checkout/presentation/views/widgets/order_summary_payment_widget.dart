@@ -1,7 +1,6 @@
 import 'package:ecommerce/core/utils/app_text_styles.dart';
 import 'package:ecommerce/features/checkout/domin/entites/order_entity.dart';
 import 'package:ecommerce/features/checkout/presentation/views/widgets/payment_item.dart';
-import 'package:ecommerce/features/home/presentation/cubits/cart_cubit/cart_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
