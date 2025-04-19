@@ -8,7 +8,8 @@ class CheckoutSteps extends StatelessWidget {
   const CheckoutSteps({
     super.key,
     required this.currentIndex,
-    required this.pageController, required this.onStepTapped,
+    required this.pageController,
+    required this.onStepTapped,
   });
   final int currentIndex;
   final PageController pageController;
@@ -19,7 +20,7 @@ class CheckoutSteps extends StatelessWidget {
       children: List.generate(getSteps().length, (index) {
         return Expanded(
           child: InkWell(
-            onTap:() =>  onStepTapped(index),
+            onTap: () => onStepTapped(index),
             child: StepItem(
               text: getSteps()[index],
               index: index + 1,
@@ -33,7 +34,7 @@ class CheckoutSteps extends StatelessWidget {
 
   void checkValidationCheckoutSteps(int index, BuildContext context) {
     if (index != currentIndex) {
-      if (context.read<OrderEntity>().payWithCash != null) {
+      if (context.read<OrderInputEntity>().payWithCash != null) {
         pageController.animateToPage(
           currentIndex + 1,
           duration: const Duration(milliseconds: 300),

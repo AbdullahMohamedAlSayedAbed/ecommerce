@@ -10,15 +10,13 @@ class PaypalPaymentEntity {
 
   PaypalPaymentEntity({this.amount, this.description, this.itemList});
 
-  
-  factory PaypalPaymentEntity.fromEntity(OrderEntity order) {
+  factory PaypalPaymentEntity.fromEntity(OrderInputEntity order) {
     return PaypalPaymentEntity(
       amount: Amount.fromEntity(order),
       description: 'Payment for order ${order.uID}',
       itemList: ItemList.fromEntity(items: order.cartEntity.cartItems),
     );
   }
-
 
   Map<String, dynamic> toJson() => {
     'amount': amount?.toJson(),

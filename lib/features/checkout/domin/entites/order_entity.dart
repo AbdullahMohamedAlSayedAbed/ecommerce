@@ -2,7 +2,7 @@ import 'package:ecommerce/features/checkout/domin/entites/shipping_address_entit
 import 'package:ecommerce/features/home/domin/entites/cart_entity.dart';
 import 'package:flutter/material.dart';
 
-class OrderEntity {
+class OrderInputEntity {
   final String uID;
   final CartEntity cartEntity;
   bool? payWithCash;
@@ -11,7 +11,11 @@ class OrderEntity {
   final ValueNotifier<AutovalidateMode> autoValidateMode =
       ValueNotifier<AutovalidateMode>(AutovalidateMode.disabled);
 
-  OrderEntity({required this.uID, required this.cartEntity, this.payWithCash});
+  OrderInputEntity({
+    required this.uID,
+    required this.cartEntity,
+    this.payWithCash,
+  });
 
   double get calculateShippingCost {
     if (!payWithCash!) {
@@ -24,6 +28,7 @@ class OrderEntity {
   double get calculateShippingDiscount {
     return 0;
   }
+
   double get calculateTotalPriceAfterDiscountAndShipping {
     return cartEntity.calculateTotalPriceCart +
         calculateShippingCost -

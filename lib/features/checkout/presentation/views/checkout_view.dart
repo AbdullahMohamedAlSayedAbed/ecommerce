@@ -23,12 +23,15 @@ class CheckoutView extends StatefulWidget {
 
 class _CheckoutViewState extends State<CheckoutView> {
   late PageController pageController;
-  late OrderEntity orderEntity; // تعريف OrderEntity كمتغير في الـ State
+  late OrderInputEntity orderEntity; // تعريف OrderEntity كمتغير في الـ State
 
   @override
   void initState() {
     super.initState();
-    orderEntity = OrderEntity(uID: getUser().id, cartEntity: widget.cartEntity);
+    orderEntity = OrderInputEntity(
+      uID: getUser().id,
+      cartEntity: widget.cartEntity,
+    );
     pageController = PageController();
     pageController.addListener(() {
       setState(() {

@@ -1,6 +1,7 @@
 import 'package:ecommerce/features/checkout/data/models/order_product_model.dart';
 import 'package:ecommerce/features/checkout/data/models/shipping_address_model.dart';
 import 'package:ecommerce/features/checkout/domin/entites/order_entity.dart';
+import 'package:uuid/uuid.dart' show Uuid;
 
 class OrderModel {
   final num totalPrice;
@@ -8,8 +9,9 @@ class OrderModel {
   final ShippingAddressModel shippingAddress;
   final List<OrderProductModel> orderProducts;
   final String paymentMethod;
+  final String orderId;
 
-  OrderModel({
+  OrderModel( {required this.orderId,
     required this.totalPrice,
     required this.uID,
     required this.shippingAddress,
@@ -18,6 +20,7 @@ class OrderModel {
   });
   factory OrderModel.fromJson(Map<String, dynamic> json) {
     return OrderModel(
+      orderId: json['orderId'],
       totalPrice: json['totalPrice'],
       uID: json['uID'],
       shippingAddress: ShippingAddressModel.fromJson(json['shippingAddress']),
@@ -28,8 +31,9 @@ class OrderModel {
       paymentMethod: json['paymentMethod'],
     );
   }
-  factory OrderModel.fromEntity(OrderEntity order) {
+  factory OrderModel.fromEntity(OrderInputEntity order) {
     return OrderModel(
+      orderId: Uuid().v4(),
       totalPrice: order.cartEntity.calculateTotalPriceCart,
       uID: order.uID,
       shippingAddress: ShippingAddressModel.fromEntity(order.shippingAddress!),
@@ -43,6 +47,7 @@ class OrderModel {
 
   Map<String, dynamic> toJson() {
     return {
+      'orderId': orderId,
       'totalPrice': totalPrice,
       'uID': uID,
       'status': 'pending',

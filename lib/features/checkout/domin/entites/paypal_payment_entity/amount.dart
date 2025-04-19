@@ -18,7 +18,7 @@ class Amount {
   //           ? null
   //           : Details.fromJson(json['details'] as Map<String, dynamic>),
   // );
-  factory Amount.fromEntity(OrderEntity order) {
+  factory Amount.fromEntity(OrderInputEntity order) {
     return Amount(
       total: order.calculateTotalPriceAfterDiscountAndShipping.toString(),
       currency: getCurrency(),

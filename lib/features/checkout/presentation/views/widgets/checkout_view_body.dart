@@ -40,7 +40,7 @@ class CheckoutViewBody extends StatelessWidget {
                   curve: Curves.bounceIn,
                 );
               } else if (index == 1) {
-                if (context.read<OrderEntity>().payWithCash != null) {
+                if (context.read<OrderInputEntity>().payWithCash != null) {
                   pageController.animateToPage(
                     index,
                     duration: const Duration(milliseconds: 300),
@@ -81,21 +81,21 @@ class CheckoutViewBody extends StatelessWidget {
   }
 
   void _handleAddressingValidation(BuildContext context) {
-    if (context.read<OrderEntity>().formKey.currentState!.validate()) {
-      context.read<OrderEntity>().formKey.currentState!.save();
+    if (context.read<OrderInputEntity>().formKey.currentState!.validate()) {
+      context.read<OrderInputEntity>().formKey.currentState!.save();
       pageController.animateToPage(
         currentIndex + 1,
         duration: const Duration(milliseconds: 300),
         curve: Curves.bounceIn,
       );
     } else {
-      context.read<OrderEntity>().autoValidateMode.value =
+      context.read<OrderInputEntity>().autoValidateMode.value =
           AutovalidateMode.always;
     }
   }
 
   void _handleShippingSectionValidation(BuildContext context) {
-    if (context.read<OrderEntity>().payWithCash != null) {
+    if (context.read<OrderInputEntity>().payWithCash != null) {
       pageController.animateToPage(
         currentIndex + 1,
         duration: const Duration(milliseconds: 300),
@@ -123,7 +123,7 @@ class CheckoutViewBody extends StatelessWidget {
   }
 
   void _processPayment(BuildContext context) {
-    var orderEntity = context.read<OrderEntity>();
+    var orderEntity = context.read<OrderInputEntity>();
     var addOrderCubit = context.read<AddOrderCubit>();
     PaypalPaymentEntity paypalPaymentEntity = PaypalPaymentEntity.fromEntity(
       orderEntity,
@@ -138,14 +138,14 @@ class CheckoutViewBody extends StatelessWidget {
               secretKey: AppKeys.clientSecret,
               transactions: [paypalPaymentEntity.toJson()],
               note: "Contact us for any questions on your order.",
-              onSuccess: (Map params) async {
+              onSuccess: (Map params) {
                 log("onSuccess: $params");
                 Navigator.pop(context);
+                addOrderCubit.addOrder(order: orderEntity);
                 showCustomToast(
                   message: 'تم الدفع بنجاح',
                   type: ToastType.success,
                 );
-                await addOrderCubit.addOrder(order: orderEntity);
               },
               onError: (error) {
                 log("onError: $error");
