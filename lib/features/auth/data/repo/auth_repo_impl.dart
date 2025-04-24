@@ -169,4 +169,40 @@ class AuthRepoImpl extends AuthRepo {
     var jsonData = jsonEncode(UserModel.fromEntity(user).toJson());
     await Prefs.setString(kUserData, jsonData);
   }
+
+  @override
+  Future<Either<Failure, void>> sendPasswordResetEmail({
+    required String emailAddress,
+  }) async {
+    try {
+      await authServices.sendPasswordResetEmail(emailAddress: emailAddress);
+      return right(null);
+    } on CustomException catch (e) {
+      return left(ServerFailure(e.message.toString()));
+    } catch (e) {
+      log(
+        "sendPasswordResetEmail = ${e.toString()}",
+        name: "AuthRepoImpl.sendPasswordResetEmail",
+      );
+      return left(ServerFailure("حدث خطأ ما"));
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> updatePassword({
+    required String password,
+  }) async {
+    try {
+      await authServices.updatePassword(password: password);
+      return right(null);
+    } on CustomException catch (e) {
+      return left(ServerFailure(e.message.toString()));
+    } catch (e) {
+      log(
+        "updatePassword = ${e.toString()}",
+        name: "AuthRepoImpl.updatePassword",
+      );
+      return left(ServerFailure("حدث خطأ ما"));
+    }
+  }
 }

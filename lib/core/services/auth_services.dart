@@ -21,4 +21,10 @@ abstract class AuthServices {
   bool isSignIn();
   bool emailVerified();
   Future<void> sendEmailVerification();
+  Future<void> sendPasswordResetEmail({
+    required String emailAddress,
+  });
+  Future<void> updatePassword({
+    required String password,
+  });
 }

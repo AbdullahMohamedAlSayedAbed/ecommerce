@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:ecommerce/core/constants/constants.dart';
+import 'package:ecommerce/core/helper/on_generate_router.dart';
 import 'package:ecommerce/core/utils/app_colors.dart';
 import 'package:ecommerce/core/utils/app_images.dart';
 import 'package:ecommerce/core/utils/app_text_styles.dart';
@@ -55,10 +56,15 @@ class _SigninViewBodyState extends State<SigninViewBody> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Text(
-                    'نسيت كلمة المرور؟',
-                    style: TextStyles.semiBold13.copyWith(
-                      color: AppColors.lightPrimaryColor,
+                  InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, AppRouter.forgotPassword);
+                    },
+                    child: Text(
+                      'نسيت كلمة المرور؟',
+                      style: TextStyles.semiBold13.copyWith(
+                        color: AppColors.lightPrimaryColor,
+                      ),
                     ),
                   ),
                 ],
