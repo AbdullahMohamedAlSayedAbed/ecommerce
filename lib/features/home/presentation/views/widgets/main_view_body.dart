@@ -1,6 +1,7 @@
 import 'package:ecommerce/features/home/presentation/views/cart_view.dart';
 import 'package:ecommerce/features/home/presentation/views/home_view.dart';
 import 'package:ecommerce/features/home/presentation/views/products_view.dart';
+import 'package:ecommerce/features/home/presentation/views/profile_view.dart';
 import 'package:flutter/material.dart';
 
 class MainViewBody extends StatelessWidget {
@@ -12,7 +13,7 @@ class MainViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return IndexedStack(
       index: currentIndex,
-      children: [HomeView(), ProductsView(), CartView()],
+      children: [HomeView(), ProductsView(), CartView(),ProfileView()],
     );
   }
 }
