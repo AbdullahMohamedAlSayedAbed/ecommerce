@@ -134,4 +134,22 @@ class FirebaseAuthService extends AuthServices {
   bool isSignIn() {
     return _firebaseAuth.currentUser != null;
   }
+  
+  @override
+bool emailVerified() {
+  final user = _firebaseAuth.currentUser;
+  if (user != null) {
+    return user.emailVerified;
+  }
+  return false;
+}
+  
+  @override
+Future<void> sendEmailVerification() {
+  final user = _firebaseAuth.currentUser;
+  if (user != null) {
+    return user.sendEmailVerification();
+  }
+  return Future.error("No user logged in");
+}
 }

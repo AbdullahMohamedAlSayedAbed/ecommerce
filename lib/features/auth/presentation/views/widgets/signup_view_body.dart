@@ -2,7 +2,7 @@ import 'package:ecommerce/core/constants/constants.dart';
 import 'package:ecommerce/core/helper/show_custom_toast.dart';
 import 'package:ecommerce/core/widgets/custom_button.dart' show CustomButton;
 import 'package:ecommerce/core/widgets/custom_text_form_field.dart';
-import 'package:ecommerce/features/auth/presentation/views/cubit/signup_cubit/signup_cubit.dart';
+import 'package:ecommerce/features/auth/presentation/cubit/signup_cubit/signup_cubit.dart';
 import 'package:ecommerce/features/auth/presentation/views/widgets/have_an_account_widget.dart';
 import 'package:ecommerce/features/auth/presentation/views/widgets/terms_and_conditions.dart';
 import 'package:flutter/material.dart';

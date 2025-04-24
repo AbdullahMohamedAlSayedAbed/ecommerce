@@ -37,15 +37,18 @@ class _SplashViewBodyState extends State<SplashViewBody> {
     );
   }
 
+
   void executeNavigation() {
     bool isOnBoarding = Prefs.getBool(kIsOnBoardingViewSeen);
     bool isLogin = getIt<AuthServices>().isSignIn();
+    bool isEmailVerified = getIt<AuthServices>().emailVerified();
 
     Future.delayed(const Duration(seconds: 3), () {
+      if (!mounted) return; 
       if (!isOnBoarding) {
         Navigator.pushReplacementNamed(context, AppRouter.onBoarding);
       } else {
-        if (isLogin) {
+        if (isLogin && isEmailVerified) {
           Navigator.pushReplacementNamed(context, AppRouter.home);
         } else {
           Navigator.pushReplacementNamed(context, AppRouter.login);

@@ -7,7 +7,7 @@ import 'package:ecommerce/core/utils/app_text_styles.dart';
 import 'package:ecommerce/core/widgets/custom_button.dart';
 import 'package:ecommerce/core/widgets/custom_text_form_field.dart';
 import 'package:ecommerce/core/widgets/password_field.dart';
-import 'package:ecommerce/features/auth/presentation/views/cubit/signin_cubit/signin_cubit.dart';
+import 'package:ecommerce/features/auth/presentation/cubit/signin_cubit/signin_cubit.dart';
 import 'package:ecommerce/features/auth/presentation/views/widgets/or_divider.dart';
 import 'package:ecommerce/features/auth/presentation/views/widgets/social_login_button.dart';
 import 'package:flutter/material.dart';

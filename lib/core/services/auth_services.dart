@@ -19,4 +19,6 @@ abstract class AuthServices {
     required String password,
   });
   bool isSignIn();
+  bool emailVerified();
+  Future<void> sendEmailVerification();
 }

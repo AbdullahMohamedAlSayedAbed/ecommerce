@@ -49,9 +49,11 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
             color:
                 currentPage == 1
                     ? AppColors.primaryColor
-                    : AppColors.primaryColor.withOpacity(.5),
+                    : AppColors.primaryColor.withValues(
+                        alpha: 250/2
+                      ),
+                    ),
           ),
-        ),
         const SizedBox(height: 29),
         Visibility(
           visible: currentPage == 1 ? true : false,
