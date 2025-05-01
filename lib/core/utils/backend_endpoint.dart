@@ -4,4 +4,5 @@ abstract class BackendEndpoint {
   static const getProducts = 'products';
   static const isUserExists = 'users';
   static const addOrder = 'Orders';
+  static const favorites = 'favorites';
 }

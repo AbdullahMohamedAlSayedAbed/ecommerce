@@ -3,12 +3,13 @@ import 'package:ecommerce/core/utils/app_colors.dart';
 import 'package:ecommerce/core/utils/app_text_styles.dart';
 import 'package:ecommerce/core/widgets/custom_network_image.dart';
 import 'package:ecommerce/features/home/presentation/cubits/cart_cubit/cart_cubit.dart';
+import 'package:ecommerce/features/home/presentation/cubits/favorite_cubit/favorite_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 class FruitItem extends StatelessWidget {
   const FruitItem({super.key, required this.product});
   final ProductEntity product;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -25,8 +26,8 @@ class FruitItem extends StatelessWidget {
                 product.imageUrl == null
                     ? Container(color: Colors.grey, width: 100, height: 100)
                     : Flexible(
-                      child: CustomNetworkImage(imageUrl: product.imageUrl!),
-                    ),
+                        child: CustomNetworkImage(imageUrl: product.imageUrl!),
+                      ),
                 SizedBox(height: 24),
                 ListTile(
                   title: Text(
@@ -68,9 +69,46 @@ class FruitItem extends StatelessWidget {
               ],
             ),
           ),
-          IconButton(onPressed: () {}, icon: Icon(Icons.favorite_outline)),
+          Positioned(
+            top: 8,
+            left: 8,
+            child: FavoriteIconButton(product: product),
+          ),
         ],
       ),
     );
   }
 }
+
+class FavoriteIconButton extends StatelessWidget {
+  const FavoriteIconButton({super.key, required this.product});
+
+  final ProductEntity product;
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<FavoriteCubit, FavoriteState>(
+      builder: (context, state) {
+        final isFav = state is FavoriteLoaded &&
+            state.products.any((p) => p.code == product.code);
+
+        return AnimatedSwitcher(
+          duration: Duration(milliseconds: 300),
+          transitionBuilder: (child, animation) =>
+              ScaleTransition(scale: animation, child: child),
+          child: IconButton(
+            key: ValueKey(isFav),
+            icon: Icon(
+              isFav ? Icons.favorite : Icons.favorite_border,
+              color: isFav ? Colors.red : Colors.grey,
+            ),
+            onPressed: () {
+              context.read<FavoriteCubit>().toggleFavorite(product);
+            },
+          ),
+        );
+      },
+    );
+  }
+}
+
