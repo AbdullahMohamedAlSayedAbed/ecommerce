@@ -10,6 +10,7 @@ import 'package:ecommerce/features/auth/data/repo/auth_repo_impl.dart';
 import 'package:ecommerce/features/auth/domin/repo/auth_repo.dart';
 import 'package:ecommerce/features/home/data/repos/favorites_repo_impl.dart';
 import 'package:ecommerce/features/home/domin/repos/favorites_repo.dart';
+import 'package:ecommerce/features/home/presentation/cubits/favorite_cubit/favorite_cubit.dart';
 import 'package:get_it/get_it.dart';
 
 final getIt = GetIt.instance;
@@ -31,5 +32,8 @@ void setupServiceLocator() {
   );
   getIt.registerSingleton<FavoritesRepository>(
     FavoritesRepoImpl(databaseService: getIt<DatabaseService>()),
+  );
+  getIt.registerFactory(
+    () => FavoriteCubit(getIt<FavoritesRepository>()),
   );
 }

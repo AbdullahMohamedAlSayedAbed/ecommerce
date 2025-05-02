@@ -23,8 +23,8 @@ class _MainViewState extends State<MainView> {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => CartCubit()),
-        BlocProvider(
-          create: (context) => FavoriteCubit(getIt.get<FavoritesRepository>()),
+        BlocProvider.value(
+          value: getIt.get<FavoriteCubit>(),
         ),
       ],
 
