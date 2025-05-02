@@ -1,5 +1,7 @@
 import 'package:ecommerce/core/utils/app_images.dart';
 import 'package:ecommerce/core/utils/app_text_styles.dart';
+import 'package:ecommerce/features/home/presentation/views/functions/build_order_price_show_model.dart'
+    show buildOrderPriceShowModal;
 import 'package:flutter/material.dart';
 import 'package:svg_flutter/svg.dart';
 
@@ -27,9 +29,14 @@ class SearchTextField extends StatelessWidget {
             width: 20,
             child: Center(child: SvgPicture.asset(Assets.imagesSearchIcon)),
           ),
-          suffixIcon: SizedBox(
-            width: 20,
-            child: Center(child: SvgPicture.asset(Assets.imagesFilter)),
+          suffixIcon: InkWell(
+            onTap: () {
+              buildOrderPriceShowModal(context);
+            },
+            child: SizedBox(
+              width: 20,
+              child: Center(child: SvgPicture.asset(Assets.imagesFilter)),
+            ),
           ),
           hintStyle: TextStyles.regular13.copyWith(
             color: const Color(0xFF949D9E),

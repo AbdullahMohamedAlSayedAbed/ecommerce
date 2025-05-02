@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:ecommerce/core/entites/product_entity.dart';
+import 'package:ecommerce/core/enum/sort_option.dart';
 import 'package:ecommerce/core/repos/product_repo/product_repo.dart';
 import 'package:equatable/equatable.dart';
 
@@ -53,5 +54,24 @@ class ProductsCubit extends Cubit<ProductsState> {
       productLength = filtered.length;
       emit(ProductsSuccess(filtered));
     }
+  }
+  void sortBy(SortOption option) {
+    // ننسخ القائمة الأصلية حتى لا نغيّرها
+    final sorted = List<ProductEntity>.from(_allProducts);
+    switch (option) {
+      case SortOption.priceAsc:
+        sorted.sort((a, b) => a.price.compareTo(b.price));
+        break;
+      case SortOption.priceDesc:
+        sorted.sort((a, b) => b.price.compareTo(a.price));
+        break;
+      case SortOption.alphabetical:
+        sorted.sort(
+          (a, b) => a.title.toLowerCase().compareTo(b.title.toLowerCase()),
+        );
+        break;
+    }
+    productLength = sorted.length;
+    emit(ProductsSuccess(sorted));
   }
 }
