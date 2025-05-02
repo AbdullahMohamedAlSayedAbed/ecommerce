@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:svg_flutter/svg.dart';
 
 class SearchTextField extends StatelessWidget {
-  const SearchTextField({super.key});
-
+  const SearchTextField({super.key, this.onChanged});
+  final void Function(String)? onChanged;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -20,6 +20,7 @@ class SearchTextField extends StatelessWidget {
         ],
       ),
       child: TextField(
+        onChanged: onChanged,
         keyboardType: TextInputType.text,
         decoration: InputDecoration(
           prefixIcon: SizedBox(

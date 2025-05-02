@@ -17,8 +17,18 @@ class ProductsViewBody extends StatefulWidget {
 class _ProductsViewBodyState extends State<ProductsViewBody> {
   @override
   void initState() {
-    context.read<ProductsCubit>().getBestSellingProducts();
+    context.read<ProductsCubit>().getProducts();
     super.initState();
+  }
+
+  void _onSearch(String query) {
+    if (query.isEmpty) {
+      // إذا كان الاستعلام فارغًا، نعيد جلب المنتجات الأكثر مبيعًا
+      context.read<ProductsCubit>().getProducts();
+    } else {
+      // إذا كان هناك استعلام، نبحث عن المنتجات
+      context.read<ProductsCubit>().searchProducts(query);
+    }
   }
 
   @override
@@ -38,10 +48,14 @@ class _ProductsViewBodyState extends State<ProductsViewBody> {
                     showBackButton: false,
                   ),
                   SizedBox(height: 16),
-                  SearchTextField(),
+                  SearchTextField(onChanged: _onSearch),
                   SizedBox(height: 12),
-                  ProductsViewHeader(
-                    productLength: context.read<ProductsCubit>().productLength,
+                  BlocBuilder<ProductsCubit, ProductsState>(
+                    builder: (context, state) {
+                      final length =
+                          state is ProductsSuccess ? state.products.length : 0;
+                      return ProductsViewHeader(productLength: length);
+                    },
                   ),
                   SizedBox(height: 8),
                 ],

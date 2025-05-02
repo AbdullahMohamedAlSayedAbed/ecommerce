@@ -47,4 +47,23 @@ class ProductRepoImpl implements ProductsRepo {
       return left(ServerFailure('حدث خطاء ما'));
     }
   }
+  
+  @override
+  Future<Either<Failure, List<ProductEntity>>> searchProducts(String query) async{
+   try {
+      var data = await databaseService.getData(
+        path: BackendEndpoint.getProducts,
+        query: {
+          'where': 'name',
+          'whereValue': query,
+        },
+      ) as List<Map<String, dynamic>>;
+      List<ProductEntity> products =
+          data.map((e) => ProductModel.fromJson(e).toEntity()).toList();
+      return right(products);
+    } catch (e) {
+      log(e.toString(), name: "ProductRepoImpl.searchProducts");
+      return left(ServerFailure('حدث خطأ ما'));
+    }
+  }
 }

@@ -1,8 +1,6 @@
 import 'package:ecommerce/core/entites/product_entity.dart';
 import 'package:ecommerce/core/widgets/fruit_item.dart';
-import 'package:ecommerce/features/home/presentation/cubits/favorite_cubit/favorite_cubit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BestSellingSliverGrid extends StatelessWidget {
   const BestSellingSliverGrid({super.key, required this.products});
