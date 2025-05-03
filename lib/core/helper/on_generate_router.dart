@@ -1,3 +1,4 @@
+import 'package:ecommerce/core/entites/product_entity.dart' show ProductEntity;
 import 'package:ecommerce/features/auth/presentation/views/forgot_password_view.dart';
 import 'package:ecommerce/features/auth/presentation/views/login_view.dart';
 import 'package:ecommerce/features/auth/presentation/views/signup_view.dart';
@@ -7,6 +8,7 @@ import 'package:ecommerce/features/home/domin/entites/cart_entity.dart';
 import 'package:ecommerce/features/home/presentation/views/favourite_view.dart';
 import 'package:ecommerce/features/home/presentation/views/main_view.dart';
 import 'package:ecommerce/features/on_boarding/presentation/views/on_boarding_view.dart';
+import 'package:ecommerce/features/product_details/presentation/views/product_details_view.dart';
 import 'package:ecommerce/features/splash/views/splash_view.dart';
 import 'package:flutter/material.dart';
 
@@ -20,6 +22,7 @@ abstract class AppRouter {
   static const String bestSelling = 'bestSelling';
   static const String checkout = 'checkout';
   static const String favorite = 'favorite';
+  static const String productDetails = 'productDetails';
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
       case splash:
@@ -38,6 +41,10 @@ abstract class AppRouter {
         return MaterialPageRoute(builder: (context) => const BestSellingView());
       case favorite:
         return MaterialPageRoute(builder: (context) => const FavoriteView());
+      case productDetails:
+        return MaterialPageRoute(builder: (context) => ProductDetailsView(
+          productEntity: settings.arguments as ProductEntity,
+        ));
       case checkout:
         return MaterialPageRoute(
           builder:

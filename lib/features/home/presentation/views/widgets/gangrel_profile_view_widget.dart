@@ -1,17 +1,16 @@
-import 'package:ecommerce/core/helper/on_generate_router.dart';
 import 'package:ecommerce/core/utils/app_colors.dart';
 import 'package:ecommerce/core/utils/app_text_styles.dart';
 import 'package:flutter/material.dart';
 
 class GangrelProfileViewWidget extends StatelessWidget {
-  const GangrelProfileViewWidget({super.key});
-
+  const GangrelProfileViewWidget({super.key, required this.name, this.onTap, required this.icon});
+  final String name;
+  final void Function()? onTap;
+  final IconData icon;
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        Navigator.pushNamed(context, AppRouter.favorite);
-      },
+      onTap: onTap,
       child: Container(
         width: double.infinity,
         padding: const EdgeInsets.all(8),
@@ -26,9 +25,9 @@ class GangrelProfileViewWidget extends StatelessWidget {
         child: Row(
           spacing: 10,
           children: [
-            Icon(Icons.favorite_outline, color: AppColors.primaryColor),
+            Icon(icon, color: AppColors.primaryColor),
             Text(
-              'المفضلة',
+              name,
               style: TextStyles.semiBold13.copyWith(
                 color: const Color(0xFF949D9E),
               ),

@@ -1,5 +1,4 @@
 import 'package:ecommerce/core/services/get_it_services.dart';
-import 'package:ecommerce/features/home/domin/repos/favorites_repo.dart';
 import 'package:ecommerce/features/home/presentation/cubits/cart_cubit/cart_cubit.dart';
 import 'package:ecommerce/features/home/presentation/cubits/favorite_cubit/favorite_cubit.dart';
 import 'package:ecommerce/features/home/presentation/views/custom_button_navigation_bar.dart';
@@ -22,7 +21,7 @@ class _MainViewState extends State<MainView> {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => CartCubit()),
+        BlocProvider(create: (context) => getIt<CartCubit>()),
         BlocProvider.value(
           value: getIt.get<FavoriteCubit>(),
         ),

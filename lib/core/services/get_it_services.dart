@@ -10,6 +10,8 @@ import 'package:ecommerce/features/auth/data/repo/auth_repo_impl.dart';
 import 'package:ecommerce/features/auth/domin/repo/auth_repo.dart';
 import 'package:ecommerce/features/home/data/repos/favorites_repo_impl.dart';
 import 'package:ecommerce/features/home/domin/repos/favorites_repo.dart';
+import 'package:ecommerce/features/home/presentation/cubits/cart_cubit/cart_cubit.dart';
+import 'package:ecommerce/features/home/presentation/cubits/cart_item_cubit/cart_item_cubit.dart';
 import 'package:ecommerce/features/home/presentation/cubits/favorite_cubit/favorite_cubit.dart';
 import 'package:get_it/get_it.dart';
 
@@ -35,5 +37,12 @@ void setupServiceLocator() {
   );
   getIt.registerFactory(
     () => FavoriteCubit(getIt<FavoritesRepository>()),
+  );
+  getIt.registerFactory(
+    () => CartCubit(),
+  );
+
+  getIt.registerFactory(
+    () => CartItemCubit(),
   );
 }

@@ -1,4 +1,5 @@
 import 'package:ecommerce/core/constants/constants.dart';
+import 'package:ecommerce/core/helper/on_generate_router.dart';
 import 'package:ecommerce/core/utils/app_text_styles.dart';
 import 'package:ecommerce/core/widgets/custom_app_bar.dart';
 import 'package:ecommerce/features/home/presentation/views/widgets/gangrel_profile_view_widget.dart';
@@ -29,9 +30,28 @@ class ProfileView extends StatelessWidget {
             child: Text('عام', style: TextStyles.semiBold13),
           ),
           const SizedBox(height: 20),
-          GangrelProfileViewWidget(),
+          Column(
+            spacing: 4,
+            children: [
+              GangrelProfileViewWidget(
+                onTap: () {
+                  Navigator.pushNamed(context, AppRouter.favorite);
+                },
+                icon: Icons.favorite_border,
+                name: 'المفضلة',
+              ),
+              GangrelProfileViewWidget(
+                onTap: () {
+                  Navigator.pushNamed(context, AppRouter.favorite);
+                },
+                icon: Icons.password,
+                name: 'إنشاء كلمة مرور جديدة',
+              ),
+            ],
+          ),
           Spacer(),
           LogoutWidget(),
+          const SizedBox(height: 20),
         ],
       ),
     );
