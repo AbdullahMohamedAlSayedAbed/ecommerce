@@ -42,7 +42,7 @@ class ProfileView extends StatelessWidget {
               ),
               GangrelProfileViewWidget(
                 onTap: () {
-                  Navigator.pushNamed(context, AppRouter.favorite);
+                  Navigator.pushNamed(context, AppRouter.changePassword);
                 },
                 icon: Icons.password,
                 name: 'إنشاء كلمة مرور جديدة',
