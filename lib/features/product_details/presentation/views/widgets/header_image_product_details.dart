@@ -1,5 +1,4 @@
 import 'package:ecommerce/core/entites/product_entity.dart';
-import 'package:ecommerce/core/utils/app_colors.dart';
 import 'package:ecommerce/core/widgets/custom_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -34,7 +33,7 @@ class HeaderImageProductDetails extends StatelessWidget {
           ),
           Positioned(
             left: 50,
-            top: 80,
+            bottom:50,
             right: 50,
             child: CustomNetworkImage(
               imageUrl: Provider.of<ProductEntity>(context).imageUrl!,
@@ -49,7 +48,7 @@ class HeaderImageProductDetails extends StatelessWidget {
                   Navigator.pop(context);
                 },
                 icon: CircleAvatar(
-                  backgroundColor: AppColors.lightSecondaryColor,
+                  backgroundColor: Colors.white,
                   child: const Icon(Icons.arrow_back_ios_new_rounded)),
               ),
             ),

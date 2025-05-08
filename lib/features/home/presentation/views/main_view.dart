@@ -21,7 +21,6 @@ class _MainViewState extends State<MainView> {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => getIt<CartCubit>()),
         BlocProvider.value(
           value: getIt.get<FavoriteCubit>(),
         ),
