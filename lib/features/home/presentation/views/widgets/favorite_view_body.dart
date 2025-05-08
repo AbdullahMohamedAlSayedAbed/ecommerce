@@ -3,11 +3,19 @@ import 'package:ecommerce/features/home/presentation/views/widgets/favorite_prod
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class FavoriteViewBody extends StatelessWidget {
+class FavoriteViewBody extends StatefulWidget {
   const FavoriteViewBody({super.key});
 
   @override
+  State<FavoriteViewBody> createState() => _FavoriteViewBodyState();
+}
 
+class _FavoriteViewBodyState extends State<FavoriteViewBody> {
+  @override
+  void initState() {
+    super.initState();
+    BlocProvider.of<FavoriteCubit>(context).getFavorites();
+  }
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<FavoriteCubit, FavoriteState>(

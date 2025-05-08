@@ -5,6 +5,7 @@ import 'package:ecommerce/core/utils/app_colors.dart';
 import 'package:ecommerce/core/widgets/custom_bloc_opserver.dart';
 import 'package:ecommerce/features/home/presentation/cubits/cart_cubit/cart_cubit.dart';
 import 'package:ecommerce/features/home/presentation/cubits/cart_item_cubit/cart_item_cubit.dart';
+import 'package:ecommerce/features/home/presentation/cubits/favorite_cubit/favorite_cubit.dart';
 import 'package:ecommerce/firebase_options.dart';
 import 'package:ecommerce/generated/l10n.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -33,6 +34,9 @@ class FruitHub extends StatelessWidget {
             ),
             BlocProvider(
               create: (context) => getIt<CartCubit>(),
+            ),
+            BlocProvider(
+              create: (context) =>  getIt.get<FavoriteCubit>(),
             ),
           ],
           child: MaterialApp(
