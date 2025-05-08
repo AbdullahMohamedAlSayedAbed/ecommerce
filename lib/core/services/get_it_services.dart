@@ -1,9 +1,13 @@
+import 'package:ecommerce/core/repos/images_repo/images_repo.dart';
+import 'package:ecommerce/core/repos/images_repo/images_repo_impl.dart';
 import 'package:ecommerce/core/repos/order_repo/order_repo.dart';
 import 'package:ecommerce/core/repos/order_repo/order_repo_impl.dart';
 import 'package:ecommerce/core/repos/product_repo/product_repo.dart';
 import 'package:ecommerce/core/repos/product_repo/product_repo_impl.dart';
 import 'package:ecommerce/core/services/auth_services.dart';
 import 'package:ecommerce/core/services/database_service.dart';
+import 'package:ecommerce/core/services/fire_storage.dart';
+import 'package:ecommerce/core/services/fire_storage_service.dart';
 import 'package:ecommerce/core/services/firebase_auth_services.dart';
 import 'package:ecommerce/core/services/firestore_service.dart';
 import 'package:ecommerce/features/auth/data/repo/auth_repo_impl.dart';
@@ -35,14 +39,13 @@ void setupServiceLocator() {
   getIt.registerSingleton<FavoritesRepository>(
     FavoritesRepoImpl(databaseService: getIt<DatabaseService>()),
   );
-  getIt.registerFactory(
-    () => FavoriteCubit(getIt<FavoritesRepository>()),
-  );
-  getIt.registerFactory(
-    () => CartCubit(),
-  );
+  getIt.registerFactory(() => FavoriteCubit(getIt<FavoritesRepository>()));
+  getIt.registerFactory(() => CartCubit());
 
-  getIt.registerFactory(
-    () => CartItemCubit(),
+  getIt.registerFactory(() => CartItemCubit());
+
+  getIt.registerSingleton<FireStorageService>(FireStorage());
+  getIt.registerSingleton<ImagesRepo>(
+    ImagesRepoImpl(fireStorageService: getIt.get<FireStorageService>()),
   );
 }

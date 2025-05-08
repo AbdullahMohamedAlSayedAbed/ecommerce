@@ -64,5 +64,9 @@
 	</dict>
 </array>
 <!-- End of the Google Sign-in Section -->
+	<key>NSCameraUsageDescription</key>
+    <string>السماح للتطبيق باستخدام الكاميرا</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>السماح للتطبيق بالوصول إلى المعرض</string>
 </dict>
 </plist>

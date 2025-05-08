@@ -1,6 +1,7 @@
 import 'package:ecommerce/core/helper/get_user.dart';
 import 'package:ecommerce/core/utils/app_images.dart';
 import 'package:ecommerce/core/utils/app_text_styles.dart';
+import 'package:ecommerce/core/widgets/custom_network_image.dart';
 import 'package:ecommerce/core/widgets/notification_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +15,10 @@ class CustomHomeAppBar extends StatelessWidget {
         'صباح الخير !...',
         style: TextStyles.regular16.copyWith(color: Color(0xff949D9E)),
       ),
-      leading: Image.asset(Assets.imagesProfileImage),
+      leading:getUser().imageUrl != null ?ClipRRect(
+        borderRadius: BorderRadius.circular(30),
+        child: CustomNetworkImage(imageUrl: getUser().imageUrl!),
+      ) : Image.asset(Assets.imagesProfileImage),
       trailing: NotificationWidget(),
       subtitle: Text(
         getUser().name,
