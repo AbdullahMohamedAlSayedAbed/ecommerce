@@ -15,10 +15,10 @@ class CustomHomeAppBar extends StatelessWidget {
         'صباح الخير !...',
         style: TextStyles.regular16.copyWith(color: Color(0xff949D9E)),
       ),
-      leading:getUser().imageUrl != null ?ClipRRect(
-        borderRadius: BorderRadius.circular(30),
-        child: CustomNetworkImage(imageUrl: getUser().imageUrl!),
-      ) : Image.asset(Assets.imagesProfileImage),
+      leading:getUser().imageUrl != null ? SizedBox(
+        height: 60,
+        width: 60,
+        child: ClipOval(child: CustomNetworkImage(imageUrl: getUser().imageUrl!))) : Image.asset(Assets.imagesProfileImage),
       trailing: NotificationWidget(),
       subtitle: Text(
         getUser().name,

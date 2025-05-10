@@ -16,7 +16,7 @@ class HomeViewBody extends StatefulWidget {
 }
 
 class _HomeViewBodyState extends State<HomeViewBody> {
-    void _onSearch(String query) {
+  void _onSearch(String query) {
     if (query.isEmpty) {
       // إذا كان الاستعلام فارغًا، نعيد جلب المنتجات الأكثر مبيعًا
       context.read<ProductsCubit>().getProducts();
@@ -30,31 +30,30 @@ class _HomeViewBodyState extends State<HomeViewBody> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
-      child: CustomScrollView(
-        slivers: [
-          SliverToBoxAdapter(
-            child: Column(
-              children: [
-                SizedBox(height: kTopPadding),
-                CustomHomeAppBar(),
-                SizedBox(height: 16),
-                SearchTextField(
-                    onChanged: _onSearch,
-                ),
-                SizedBox(height: 12),
-                FeaturedList(
-                  
-                ),
-                SizedBox(height: 12),
-                BestSellingHeader(
-                  
-                ),
-                SizedBox(height: 8),
-              ],
+      child: RefreshIndicator(
+        onRefresh: () async {
+          await context.read<ProductsCubit>().getBestSellingProducts();
+        },
+        child: CustomScrollView(
+          slivers: [
+            SliverToBoxAdapter(
+              child: Column(
+                children: [
+                  SizedBox(height: kTopPadding),
+                  CustomHomeAppBar(),
+                  SizedBox(height: 16),
+                  SearchTextField(onChanged: _onSearch),
+                  SizedBox(height: 12),
+                  FeaturedList(),
+                  SizedBox(height: 12),
+                  BestSellingHeader(),
+                  SizedBox(height: 8),
+                ],
+              ),
             ),
-          ),
-          BestSellingSliverGridBlocBuilder(),
-        ],
+            BestSellingSliverGridBlocBuilder(),
+          ],
+        ),
       ),
     );
   }

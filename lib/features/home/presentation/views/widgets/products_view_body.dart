@@ -36,33 +36,38 @@ class _ProductsViewBodyState extends State<ProductsViewBody> {
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
-        child: CustomScrollView(
-          slivers: [
-            SliverToBoxAdapter(
-              child: Column(
-                children: [
-                  SizedBox(height: kTopPadding),
-                  customAppBar(
-                    context,
-                    title: 'المنتجات',
-                    showBackButton: false,
-                  ),
-                  SizedBox(height: 16),
-                  SearchTextField(onChanged: _onSearch),
-                  SizedBox(height: 12),
-                  BlocBuilder<ProductsCubit, ProductsState>(
-                    builder: (context, state) {
-                      final length =
-                          state is ProductsSuccess ? state.products.length : 0;
-                      return ProductsViewHeader(productLength: length);
-                    },
-                  ),
-                  SizedBox(height: 8),
-                ],
+        child: RefreshIndicator(
+          onRefresh: () async {
+            await context.read<ProductsCubit>().getProducts();
+          },
+          child: CustomScrollView(
+            slivers: [
+              SliverToBoxAdapter(
+                child: Column(
+                  children: [
+                    SizedBox(height: kTopPadding),
+                    customAppBar(
+                      context,
+                      title: 'المنتجات',
+                      showBackButton: false,
+                    ),
+                    SizedBox(height: 16),
+                    SearchTextField(onChanged: _onSearch),
+                    SizedBox(height: 12),
+                    BlocBuilder<ProductsCubit, ProductsState>(
+                      builder: (context, state) {
+                        final length =
+                            state is ProductsSuccess ? state.products.length : 0;
+                        return ProductsViewHeader(productLength: length);
+                      },
+                    ),
+                    SizedBox(height: 8),
+                  ],
+                ),
               ),
-            ),
-            BestSellingSliverGridBlocBuilder(),
-          ],
+              BestSellingSliverGridBlocBuilder(),
+            ],
+          ),
         ),
       ),
     );

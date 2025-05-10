@@ -15,7 +15,7 @@ class ProductEntity extends Equatable {
   final bool isOrganic;
   final int numberOfCalories;
   final int unitAmount;
-  final int sellingCount;
+  final num sellingCount;
   num avgRating = 0, ratingCount = 0;
   final List<ReviewEntity>? reviews;
   ProductEntity({

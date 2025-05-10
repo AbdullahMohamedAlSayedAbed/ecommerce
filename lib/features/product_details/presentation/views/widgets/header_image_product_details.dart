@@ -33,7 +33,7 @@ class HeaderImageProductDetails extends StatelessWidget {
           ),
           Positioned(
             left: 50,
-            bottom:50,
+            bottom:40,
             right: 50,
             child: CustomNetworkImage(
               imageUrl: Provider.of<ProductEntity>(context).imageUrl!,

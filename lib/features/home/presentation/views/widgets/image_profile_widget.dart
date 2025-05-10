@@ -1,6 +1,5 @@
 import 'package:ecommerce/core/helper/get_user.dart';
 import 'package:ecommerce/core/utils/app_images.dart';
-import 'package:ecommerce/core/widgets/custom_network_image.dart';
 import 'package:ecommerce/features/home/presentation/cubits/profile_cubit/profile_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,11 +19,27 @@ class ImageProfileWidget extends StatelessWidget {
             if (state.imageUrl != null)
               Skeletonizer(
                 enabled: state.uploadStatus == UploadStatus.loading,
-                child: SizedBox(
+                child: Container(
                   height: 200,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(30),
-                    child: CustomNetworkImage(imageUrl: getUser().imageUrl!),
+                  width: 200,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withValues(alpha: 0.2),
+                        blurRadius: 10,
+                        offset: Offset(0, 5),
+                      ),
+                    ],
+                  ),
+                  child: ClipOval(
+                    child: Image.network(
+                      getUser().imageUrl!,
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) {
+                        return const Icon(Icons.error);
+                      },
+                    ),
                   ),
                 ),
               )
