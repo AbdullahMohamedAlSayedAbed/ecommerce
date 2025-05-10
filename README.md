@@ -1,45 +1,66 @@
 🛍️ E-Commerce App
-A robust and scalable e-commerce application built with Flutter, adhering to Clean Architecture principles and leveraging Cubit for state management. This project emphasizes maintainability, testability, and clean code practices, integrating Firebase services for backend functionalities.
 
-📱 Features
-User Authentication: Secure login and registration using Firebase Authentication.
+A robust, full-featured Flutter e-commerce application built with Clean Architecture, Cubit, and Firebase. This app provides a complete shopping experience with admin dashboard capabilities, authentication, product management, and payment integration — all following SOLID principles and clean code practices.
 
-Product Browsing: View a list of products with detailed information.
+🚀 Features
 
-Search Functionality: Search products by name or description.
+👤 Authentication
 
-Sorting Options: Sort products by price (ascending/descending) or alphabetically.
+🔐 Register & Login with Firebase
 
-Responsive UI: Clean and intuitive user interface adaptable to various screen sizes.
+🔑 Forgot Password & Reset Password
 
-State Management: Efficient state handling using Cubit from the BLoC package.
+🔄 Change Password
 
-Clean Architecture: Separation of concerns into Data, Domain, and Presentation layers.
+🚪 Logout
 
-Firebase Integration: Utilizes Firebase for authentication and real-time data management.
+🛒 E-Commerce Functionality
 
-Refresh Indicator: Pull-to-refresh functionality to update product listings.
-GitHub
-+4
-deepcrazyworld.com
-+4
-Flutter Awesome
-+4
-Medium
-GitHub
+📟 Product Listing with Details
 
-🧱 Architecture
-The project follows the Clean Architecture pattern, ensuring a clear separation of concerns:
+🛍 Product Search & Sorting
 
-Data Layer: Handles data sources, including Firebase interactions and repositories.
+❤️ Favorites View (Save liked products)
 
-Domain Layer: Contains business logic, use cases, and entity definitions.
+🛒 Cart View (Add, remove, update quantities)
 
-Presentation Layer: Manages UI components, state management (Cubit), and user interactions.
+✅ Checkout Screen
 
+💳 Payment Integration
 
-This structure promotes scalability, testability, and maintainability.
-Medium
+Secure payment functionality during checkout (Stripe/PayPal simulation or actual payment method depending on implementation)
+
+🧑‍💼 Admin Dashboard (E-Commerce Management)
+
+➕ Add new products
+
+📦 View all orders placed
+
+📟 View order details
+
+🖼 Upload product images
+
+💡 UX/UI
+
+✨ Clean and responsive design
+
+📱 Adaptive UI across devices
+
+📦 Shimmer loading effects
+
+🔀 Pull-to-refresh support
+
+🧱 Architecture Overview
+
+This project implements Clean Architecture which is split into:
+
+Data Layer: API & Firebase communication, data sources, repositories
+
+Domain Layer: Business logic, use cases, and entities
+
+Presentation Layer: UI, Cubit state management, user interaction
+
+Following SOLID principles and separation of concerns, this structure ensures scalability, testability, and maintainability.
 
 
 
