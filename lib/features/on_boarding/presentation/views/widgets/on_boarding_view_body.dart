@@ -56,7 +56,7 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
           ),
         const SizedBox(height: 29),
         Visibility(
-          visible: currentPage == 1 ? true : false,
+          visible: currentPage == 1,
           maintainSize: true,
           maintainAnimation: true,
           maintainState: true,

@@ -1,3 +1,4 @@
+import 'package:ecommerce/core/helper/on_generate_router.dart';
 import 'package:ecommerce/core/widgets/notification_widget.dart'
     show NotificationWidget;
 import 'package:flutter/material.dart';
@@ -25,7 +26,12 @@ AppBar customAppBar(
       visible: showBackButton,
       child: GestureDetector(
         onTap: () {
-          Navigator.pop(context);
+          if (Navigator.canPop(context)) {
+            Navigator.pop(context);
+          } else {
+            Navigator.pushNamedAndRemoveUntil(
+                context, AppRouter.bestSelling, (route) => false);
+          }
         },
         child: const Icon(Icons.arrow_back_ios_new),
       ),

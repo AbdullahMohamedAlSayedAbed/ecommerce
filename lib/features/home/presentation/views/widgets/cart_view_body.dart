@@ -25,6 +25,7 @@ class CartViewBody extends StatelessWidget {
                       context,
                       title: 'السلة',
                       showNotification: false,
+                      showBackButton: false,
                     ),
                     SizedBox(height: 16),
                     CartHeader(),

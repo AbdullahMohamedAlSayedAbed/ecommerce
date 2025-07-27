@@ -1,10 +1,10 @@
 import 'package:ecommerce/core/helper/show_custom_toast.dart';
 import 'package:ecommerce/core/services/auth_services.dart';
 import 'package:ecommerce/core/services/get_it_services.dart';
+import 'package:ecommerce/core/widgets/custom_progress_hud.dart';
 import 'package:ecommerce/features/auth/presentation/cubit/signup_cubit/signup_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 import 'signup_view_body.dart';
 
@@ -28,8 +28,8 @@ class SignupViewBodyBlocConsumer extends StatelessWidget {
         }
       },
       builder: (context, state) {
-        return ModalProgressHUD(
-          inAsyncCall: state is SignupLoading ? true : false,
+        return CustomProgressHud(
+          isLoading: state is SignupLoading,
           child: const SignupViewBody(),
         );
       },

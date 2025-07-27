@@ -29,10 +29,7 @@ class AuthRepoImpl extends AuthRepo {
   }
 
   @override
-  Future<bool> isSignedIn() {
-    // TODO: implement isSignedIn
-    throw UnimplementedError();
-  }
+
 
   @override
   Future<Either<Failure, UserEntity>> signInWithCredentials(
@@ -204,5 +201,11 @@ class AuthRepoImpl extends AuthRepo {
       );
       return left(ServerFailure("حدث خطأ ما"));
     }
+  }
+  
+  @override
+  Future<bool> isSignedIn() {
+    // TODO: implement isSignedIn
+    throw UnimplementedError();
   }
 }

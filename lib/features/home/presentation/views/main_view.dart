@@ -28,6 +28,6 @@ class _MainViewState extends State<MainView> {
   }
 
   Widget getCurrentView() {
-    return [HomeView(), ProductsView()][currentIndex];
+    return const [HomeView(), ProductsView()][currentIndex];
   }
 }

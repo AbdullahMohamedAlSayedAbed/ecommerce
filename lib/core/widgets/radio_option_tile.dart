@@ -1,7 +1,6 @@
 import 'package:ecommerce/core/utils/app_text_styles.dart';
 import 'package:flutter/material.dart';
 
-/// ويدجت عام يعرض RadioListTile بلا تكرار
 class RadioOptionTile<T> extends StatelessWidget {
   final String title;
   final T value;

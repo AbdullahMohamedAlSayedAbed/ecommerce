@@ -21,12 +21,10 @@ class FavoriteCubit extends Cubit<FavoriteState> {
   }
 
   Future<void> toggleFavorite(ProductEntity product) async {
-    // 1. لو في لودينج، ما تعملش حاجة
     if (state is FavoriteLoading) {
       return;
     }
 
-    // 2. لو الستيت مش FavoriteLoaded، حمّل المفضلات الأول
     if (state is! FavoriteLoaded) {
       await getFavorites();
       if (state is! FavoriteLoaded) {
@@ -35,14 +33,11 @@ class FavoriteCubit extends Cubit<FavoriteState> {
       }
     }
 
-    // 3. جيب اللست الحالية
     final currentFavorites = (state as FavoriteLoaded).products;
     final isFav = currentFavorites.any((p) => p.code == product.code);
 
-    // 4. نشّط اللودينج
     emit(FavoriteLoading());
 
-    // 5. نفّذ العملية (إضافة أو حذف)
     final result = isFav
         ? await favoritesRepository.removeFavorite(product.code)
         : await favoritesRepository.addFavorite(product);
@@ -50,11 +45,8 @@ class FavoriteCubit extends Cubit<FavoriteState> {
     result.fold(
       (failure) {
         emit(FavoriteError(failure.message));
-        // اختياري: اعادة تحميل المفضلات لو حبيت
-        // await getFavorites();
       },
       (_) {
-        // 6. حدّث اللست محلياً
         List<ProductEntity> updated;
         if (isFav) {
           updated = List<ProductEntity>.from(currentFavorites)

@@ -40,10 +40,8 @@ class ProductsCubit extends Cubit<ProductsState> {
 
   void searchProducts(String query)  {
     if (query.isEmpty) {
-      // لو المسطرة فاضية، رجع اللست الأصلية
       emit(ProductsSuccess(_allProducts));
     } else {
-      // فلترة محلية على الاسم أو الوصف
       final filtered =
           _allProducts.where((p) {
             final lower = query.toLowerCase();
@@ -56,7 +54,7 @@ class ProductsCubit extends Cubit<ProductsState> {
     }
   }
   void sortBy(SortOption option) {
-    // ننسخ القائمة الأصلية حتى لا نغيّرها
+
     final sorted = List<ProductEntity>.from(_allProducts);
     switch (option) {
       case SortOption.priceAsc:

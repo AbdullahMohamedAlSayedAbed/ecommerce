@@ -63,7 +63,9 @@ abstract class AppRouter {
                   CheckoutView(cartEntity: settings.arguments as CartEntity),
         );
       default:
-        return MaterialPageRoute(builder: (context) => const Scaffold());
+        return MaterialPageRoute(builder: (context) => const Scaffold(
+          
+        ));
     }
   }
 }

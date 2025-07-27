@@ -5,7 +5,7 @@ import 'package:ecommerce/core/widgets/custom_app_bar.dart';
 import 'package:ecommerce/features/checkout/domin/entites/order_entity.dart';
 import 'package:ecommerce/features/checkout/presentation/cubits/cubit/add_order_cubit.dart';
 import 'package:ecommerce/features/checkout/presentation/views/widgets/add_order_cubit_bloc_consumer.dart';
-import 'package:ecommerce/features/checkout/presentation/views/widgets/checkout_steps.dart';
+import 'package:ecommerce/features/checkout/presentation/views/widgets/checkout_steps.dart' show getSteps;
 import 'package:ecommerce/features/checkout/presentation/views/widgets/checkout_view_body.dart';
 import 'package:ecommerce/features/home/domin/entites/cart_entity.dart';
 import 'package:flutter/material.dart';
@@ -46,7 +46,6 @@ class _CheckoutViewState extends State<CheckoutView> {
   }
 
   int currentIndex = 0;
-
   @override
   Widget build(BuildContext context) {
     return BlocProvider(

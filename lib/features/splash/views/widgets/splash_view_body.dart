@@ -46,7 +46,7 @@ class _SplashViewBodyState extends State<SplashViewBody> {
     Future.delayed(const Duration(seconds: 3), () {
       if (!mounted) return; 
       if (!isOnBoarding) {
-        Navigator.pushReplacementNamed(context, AppRouter.onBoarding);
+        Navigator.pushReplacementNamed(context, AppRouter.onBoarding,);
       } else {
         if (isLogin && isEmailVerified) {
           Navigator.pushReplacementNamed(context, AppRouter.home);

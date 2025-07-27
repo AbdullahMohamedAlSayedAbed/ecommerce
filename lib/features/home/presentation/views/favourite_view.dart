@@ -14,7 +14,7 @@ class FavoriteView extends StatelessWidget {
           showBackButton: true,
           showNotification: false,
         ),
-        body: FavoriteViewBody(),
+        body:const FavoriteViewBody(),
     );
   }
 }

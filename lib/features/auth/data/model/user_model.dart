@@ -6,15 +6,19 @@ class UserModel extends UserEntity {
     required super.id,
     required super.email,
     required super.name,
-    super.imageUrl, // إضافة الحقل إلى البناء
+    super.imageUrl,
   });
 
-  factory UserModel.fromFirebaseUser(User user, {String? name}) {
+  factory UserModel.fromFirebaseUser(
+    User user, {
+    String? name,
+    String? imageUrl,
+  }) {
     return UserModel(
       id: user.uid,
       email: user.email ?? '',
       name: name ?? '',
-      imageUrl: null, // الصورة غير موجودة افتراضيًا
+      imageUrl: imageUrl,
     );
   }
 
@@ -23,7 +27,7 @@ class UserModel extends UserEntity {
       id: json['id'],
       email: json['email'],
       name: json['name'],
-      imageUrl: json['imageUrl'], // استرجاع رابط الصورة
+      imageUrl: json['imageUrl'], 
     );
   }
 
@@ -41,7 +45,7 @@ class UserModel extends UserEntity {
       'id': id,
       'email': email,
       'name': name,
-      'imageUrl': imageUrl, // إضافة رابط الصورة إلى JSON
+      'imageUrl': imageUrl,
     };
   }
 }
