@@ -27,7 +27,6 @@ abstract class DatabaseService {
   Future<void> removeDateInsideCollection({
     required String primaryPath,
     required String secondaryPath,
-     Map<String, dynamic>? data,
     String? primaryDocumentId,
     String? secondaryDocumentId,
   });

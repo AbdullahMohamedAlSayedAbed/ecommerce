@@ -1,3 +1,3 @@
-  String  getCurrency(){
-    return "USD";
-  }
+String getCurrency() {
+  return "USD";
+}

@@ -20,16 +20,16 @@ class CartViewBody extends StatelessWidget {
               SliverToBoxAdapter(
                 child: Column(
                   children: [
-                    SizedBox(height: kTopPadding),
+                    const SizedBox(height: kTopPadding),
                     customAppBar(
                       context,
                       title: 'السلة',
                       showNotification: false,
                       showBackButton: false,
                     ),
-                    SizedBox(height: 16),
-                    CartHeader(),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
+                    const CartHeader(),
+                    const SizedBox(height: 16),
                   ],
                 ),
               ),
@@ -42,7 +42,7 @@ class CartViewBody extends StatelessWidget {
             bottom: MediaQuery.of(context).size.height * .1,
             left: 16,
             right: 16,
-            child: CustomCartButton(),
+            child: const CustomCartButton(),
           ),
         ],
       ),

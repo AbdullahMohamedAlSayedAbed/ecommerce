@@ -62,6 +62,7 @@ class FruitItem extends StatelessWidget {
                               color: AppColors.lightSecondaryColor,
                             ),
                           ),
+                          
                         ],
                       ),
                       textAlign: TextAlign.right,

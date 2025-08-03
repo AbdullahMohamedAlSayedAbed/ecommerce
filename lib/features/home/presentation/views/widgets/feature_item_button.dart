@@ -7,21 +7,19 @@ class FeatureItemButton extends StatelessWidget {
   final String text;
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      child: TextButton(
-        style: TextButton.styleFrom(
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 4),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-          backgroundColor: Colors.white,
-        ),
-        onPressed: onPressed,
-        child: FittedBox(
-          fit: BoxFit.scaleDown,
-          alignment: Alignment.center,
-          child: Text(
-            text,
-            style: TextStyles.bold16.copyWith(color: Color(0xFF1B5E37)),
-          ),
+    return TextButton(
+      style: TextButton.styleFrom(
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 4),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+        backgroundColor: Colors.white,
+      ),
+      onPressed: onPressed,
+      child: FittedBox(
+        fit: BoxFit.scaleDown,
+        alignment: Alignment.center,
+        child: Text(
+          text,
+          style: TextStyles.bold16.copyWith(color: Color(0xFF1B5E37)),
         ),
       ),
     );

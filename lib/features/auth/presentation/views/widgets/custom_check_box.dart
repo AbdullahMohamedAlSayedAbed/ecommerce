@@ -44,7 +44,7 @@ class _CustomCheckBoxState extends State<CustomCheckBox> {
                   padding: const EdgeInsets.all(2),
                   child: SvgPicture.asset(Assets.imagesCheck),
                 )
-                : const SizedBox(),
+                : const SizedBox.shrink(),
       ),
     );
   }

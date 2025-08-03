@@ -53,7 +53,7 @@ class _CheckoutViewState extends State<CheckoutView> {
       child: Scaffold(
         appBar: customAppBar(
           context,
-          title: getSteps()[currentIndex],
+          title: getSteps[currentIndex],
           showNotification: false,
         ),
         body: Provider.value(

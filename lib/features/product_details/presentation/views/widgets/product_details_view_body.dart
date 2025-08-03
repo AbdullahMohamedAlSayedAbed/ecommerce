@@ -16,7 +16,7 @@ class ProductDetailsViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Column(
+      child:  Column(
         children: [
           HeaderImageProductDetails(),
           SizedBox(height: 24),
@@ -25,14 +25,14 @@ class ProductDetailsViewBody extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                TitleAndRattingWidget(),
-                SizedBox(height: 8),
+              const  TitleAndRattingWidget(),
+              const  SizedBox(height: 8),
                 Text(
                   " ${pro.Provider.of<ProductEntity>(context).description}",
                   style: TextStyles.regular13,
                 ),
-                TypesCategoryItemWidget(),
-                SizedBox(height: 24),
+               const TypesCategoryItemWidget(),
+              const  SizedBox(height: 24),
                 CustomButton(
                   onPressed: () {
                     final product = pro.Provider.of<ProductEntity>(
@@ -43,7 +43,7 @@ class ProductDetailsViewBody extends StatelessWidget {
                   },
                   text: 'أضف الي السلة',
                 ),
-                SizedBox(height: 40),
+             const   SizedBox(height: 40),
               ],
             ),
           ),

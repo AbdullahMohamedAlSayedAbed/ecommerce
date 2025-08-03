@@ -15,7 +15,7 @@ class NavigationBarItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedSwitcher(
-      duration: const Duration(milliseconds: 300),
+      duration: const Duration(milliseconds: 300),     
       transitionBuilder: (child, animation) {
         return FadeTransition(
           opacity: animation,

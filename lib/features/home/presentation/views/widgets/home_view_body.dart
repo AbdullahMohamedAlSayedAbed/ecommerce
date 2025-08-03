@@ -18,10 +18,8 @@ class HomeViewBody extends StatefulWidget {
 class _HomeViewBodyState extends State<HomeViewBody> {
   void _onSearch(String query) {
     if (query.isEmpty) {
-      // إذا كان الاستعلام فارغًا، نعيد جلب المنتجات الأكثر مبيعًا
       context.read<ProductsCubit>().getProducts();
     } else {
-      // إذا كان هناك استعلام، نبحث عن المنتجات
       context.read<ProductsCubit>().searchProducts(query);
     }
   }

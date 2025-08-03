@@ -4,18 +4,10 @@ import 'package:ecommerce/features/auth/presentation/views/widgets/custom_check_
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class TermsAndConditionsWidget extends StatefulWidget {
+class TermsAndConditionsWidget extends StatelessWidget {
   const TermsAndConditionsWidget({super.key, required this.onChanged});
 
   final ValueChanged<bool> onChanged;
-
-  @override
-  State<TermsAndConditionsWidget> createState() =>
-      _TermsAndConditionsWidgetState();
-}
-
-class _TermsAndConditionsWidgetState extends State<TermsAndConditionsWidget> {
-  bool isTermsAccepted = false;
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +15,7 @@ class _TermsAndConditionsWidgetState extends State<TermsAndConditionsWidget> {
       children: [
         CustomCheckBox(
           onChecked: (value) {
-            isTermsAccepted = value;
-            widget.onChanged(value);
+            onChanged(value);
           },
         ),
         const SizedBox(width: 16),

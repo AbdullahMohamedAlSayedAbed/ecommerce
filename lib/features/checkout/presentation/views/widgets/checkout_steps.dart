@@ -17,12 +17,12 @@ class CheckoutSteps extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      children: List.generate(getSteps().length, (index) {
+      children: List.generate(getSteps.length, (index) {
         return Expanded(
           child: InkWell(
             onTap: () => onStepTapped(index),
             child: StepItem(
-              text: getSteps()[index],
+              text: getSteps[index],
               index: index + 1,
               isActive: index <= currentIndex,
             ),
@@ -50,6 +50,6 @@ class CheckoutSteps extends StatelessWidget {
   }
 }
 
-List<String> getSteps() {
+List<String> get getSteps {
   return ['الشحن', 'العنوان', 'الدفع'];
 }

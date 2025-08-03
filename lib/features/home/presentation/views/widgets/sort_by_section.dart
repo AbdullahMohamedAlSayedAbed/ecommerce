@@ -12,7 +12,6 @@ class SortBySection extends StatefulWidget {
   _SortBySectionState createState() => _SortBySectionState();
 }
 
-// sort_by_section.dart
 
 class _SortBySectionState extends State<SortBySection> {
   SortOption? _selectedOption = SortOption.priceAsc;
@@ -22,7 +21,6 @@ class _SortBySectionState extends State<SortBySection> {
     setState(() {
       _selectedOption = option;
     });
-    // ربط مع الـ Cubit
     context.read<ProductsCubit>().sortBy(option);
   }
 

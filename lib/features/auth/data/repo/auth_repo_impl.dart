@@ -63,6 +63,7 @@ class AuthRepoImpl extends AuthRepo {
       var userEntity = UserModel.fromFirebaseUser(
         user!,
         name: user.displayName,
+        imageUrl: user.photoURL,
       );
       bool isUserExist = await databaseService.checkIfDataExists(
         path: BackendEndpoint.getUsersData,
@@ -93,6 +94,7 @@ class AuthRepoImpl extends AuthRepo {
       var userEntity = UserModel.fromFirebaseUser(
         user!,
         name: user.displayName,
+        imageUrl: user.photoURL,
       );
       bool isUserExist = await databaseService.checkIfDataExists(
         path: BackendEndpoint.getUsersData,
