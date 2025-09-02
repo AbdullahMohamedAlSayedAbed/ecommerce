@@ -73,10 +73,6 @@ For more on Flutter development:
 
 Contributions are welcome! Please fork the repository and submit a pull request for improvements or bug fixes. For major changes, open an issue first to discuss.
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
 ## Contact
 
 For questions or feedback, reach out via [AbdullahMohamedAlSayedAbed] or open an issue on GitHub.
