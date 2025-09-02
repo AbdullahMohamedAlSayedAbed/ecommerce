@@ -1,14 +1,12 @@
 # E-Commerce App
 
-![E-Commerce App Logo](https://via.placeholder.com/150x150?text=E-Commerce) <!-- Replace with your actual logo if available -->
-
 A robust, full-featured Flutter e-commerce application built with Clean Architecture, Cubit state management, and Firebase integration. This app delivers a complete shopping experience, including an admin dashboard for product and order management, secure authentication, payment processing, and a responsive UI—all adhering to SOLID principles and clean code practices for scalability and maintainability.
 
 ## Features
 
 - **Authentication**: Secure registration and login via Firebase, forgot/reset password, change password, and logout functionality.
 - **E-Commerce Core**: Product listing with details, search and sorting, favorites for saving liked items, cart management (add/remove/update quantities), and a seamless checkout process.
-- **Payment Integration**: Secure payment handling during checkout (supports Stripe/PayPal simulation or real integration).
+- **Payment Integration**: Secure payment handling during checkout (supports PayPal simulation or real integration).
 - **Admin Dashboard**: Add new products, view all orders and details, upload product images for efficient management.
 - **UX/UI Enhancements**: Clean, responsive design adaptive to all devices, shimmer loading effects, and pull-to-refresh support for a polished user experience.
 
